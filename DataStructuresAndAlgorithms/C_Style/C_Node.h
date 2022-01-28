@@ -53,7 +53,7 @@ struct C_LinkedList
 		}
 	}
 
-	// Recursive Display
+	// Recursive Display --> If you want to print in reverse set value to true
 	void RDisplay(struct Node* p, bool reverse = false)
 	{
 		if (p != NULL)
@@ -70,5 +70,48 @@ struct C_LinkedList
 			}
 			
 		}
+	}
+
+	int Count(struct Node* p)
+	{
+		int count = 0;
+		while (p != NULL)
+		{
+			count++;
+			p = p->next;
+		}
+
+		return count;
+	}
+
+	// Count Recursively
+	int RCount(struct Node* p)
+	{
+		// Base Case
+		if (p == 0)
+			return 0;
+		else
+			return RCount(p->next) + 1;
+	}
+
+	int SumOfNodes(struct Node* p)
+	{
+		int sum = 0;
+		while (p != NULL)
+		{
+			sum += p->data;
+			p = p->next;
+		}
+		return sum;
+	}
+
+	// Sum Recursive
+	int RSumOfNodes(struct Node* p)
+	{
+		// Base Case
+		if (p == NULL)
+			return 0;
+		else
+			return RSumOfNodes(p->next) + p->data;	
 	}
 };

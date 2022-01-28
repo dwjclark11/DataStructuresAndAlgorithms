@@ -7,6 +7,6 @@ int main()
 	cll.Create(A, sizeof(A) / sizeof(A[0]));
 
 	cll.RDisplay(first, true);
-
+	printf("Sum: %d", cll.RSumOfNodes(first));
 	return 0;
 }
