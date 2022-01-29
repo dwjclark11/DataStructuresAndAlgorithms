@@ -114,4 +114,110 @@ struct C_LinkedList
 		else
 			return RSumOfNodes(p->next) + p->data;	
 	}
+
+	int Max(struct Node* p)
+	{
+		int max = INT_MIN;
+		while (p != NULL)
+		{
+			if (p->data > max)
+				max = p->data;
+
+			p = p->next;
+		}
+		return max;
+	}
+
+	// Max Recursive
+	int RMax(struct Node* p)
+	{
+		int x = 0;
+		// Base Case
+		if (p == NULL)
+			return INT_MIN;
+		// Set the x value to the next link traversal
+		x = RMax(p->next);
+
+		// Use the ternary operator to return either x or p-data
+		return x > p->data ? x : p->data;
+	}
+
+	int Min(struct Node* p)
+	{
+		int min = INT_MAX;
+		while (p != NULL)
+		{
+			if (p->data < min)
+				min = p->data;
+
+			p = p->next;
+		}
+		return min;
+	}
+
+	int RMin(struct Node* p)
+	{
+		int x = 0;
+		// Base Case
+		if (p == NULL)
+			return INT_MAX;
+
+		// Set the x value to the next link traversal
+		x = RMin(p->next);
+		
+		return x < p->data ? x : p->data;
+	}
+
+	struct Node* LSearch(struct Node* p, int key)
+	{
+		while (p != NULL)
+		{
+			if (key == p->data)
+				return p;
+
+			p = p->next;
+		}
+		return NULL;
+	}
+
+	struct Node* RSearch(struct Node* p, int key)
+	{
+		// Base Case 
+		if (p == NULL)
+			return NULL;
+
+		if (key == p->data)
+			return p;
+
+		return RSearch(p->next, key);
+	}
+
+	// This is an improved linear Search -->Move to front
+	struct Node* Search(struct Node* p, int key)
+	{
+		struct Node* q = NULL;
+
+		while (p != NULL)
+		{
+			
+			if (key == p->data)
+			{
+				if (p != first)
+				{
+					q->next = p->next;
+					p->next = first;
+					first = p;
+					return p;
+				}
+				else
+				{
+					return first;
+				}
+			}
+
+			q = p;
+			p = p->next;
+		}
+		return NULL;
+	}
 };
