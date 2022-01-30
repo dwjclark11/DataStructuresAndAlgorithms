@@ -47,7 +47,7 @@ struct C_LinkedList
 		while (p != NULL)
 		{
 			// Print the data
-			printf("data: %d, Node Address: %d\n", p->data, p->next);
+			printf("data: %d, Node Address: %p\n", p->data, p->next);
 			// Move to the next node
 			p = p->next;
 		}
@@ -60,13 +60,13 @@ struct C_LinkedList
 		{
 			if (!reverse)
 			{
-				printf("data: %d, Node Address: %d\n", p->data, p->next);
+				printf("data: %d, Node Address: %p\n", p->data, p->next);
 				RDisplay(p->next, reverse);
 			}
 			else
 			{
 				RDisplay(p->next, reverse);
-				printf("data: %d, Node Address: %d\n", p->data, p->next);
+				printf("data: %d, Node Address: %p\n", p->data, p->next);
 			}
 			
 		}
@@ -330,7 +330,6 @@ struct C_LinkedList
 			{
 				newNode->next = first;
 				first = newNode;
-
 			}
 			else
 			{
@@ -340,4 +339,56 @@ struct C_LinkedList
 		}
 	}
 
+	int Delete(struct Node* p, int index)
+	{
+		// Declare Variables
+		struct Node* trail = NULL;
+		int x = -1, i;
+
+		if (index < 1 || index > Count(p))
+			return -1;
+		
+		// If the first node is to be deleted
+		if (index == 1)
+		{
+			trail = first;
+			x = first->data;
+			first = first->next;
+			free(trail);
+
+			// Return the deleted element
+			return x;
+		}
+		else // Not the first element
+		{
+			// Traverse through the linked list to the desired position
+			for (i = 0; i < index - 1; i++)
+			{
+				// Set the trail to p and move p to the next node
+				trail = p;
+				p = p->next;
+			}
+			// Set trail->next to p->next so we link the trail with the next element in the linked list
+			trail->next = p->next;
+			// Take the value of p and assign it to x for the return value
+			x = p->data;
+			// Deallocate p from the heap
+			free(p);
+			// Retrun the deleted value
+			return x;
+		}
+	}
+
+	bool IsSorted(struct Node* p)
+	{
+		struct Node* temp = p;
+		while (temp->next != NULL)
+		{
+			if (temp->data < temp->next->data)
+				temp = temp->next;
+			else
+				return false;
+		}
+		return true;
+	}
 };
