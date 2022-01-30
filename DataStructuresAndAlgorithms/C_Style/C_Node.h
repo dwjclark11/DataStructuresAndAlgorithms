@@ -220,4 +220,124 @@ struct C_LinkedList
 		}
 		return NULL;
 	}
+
+	int Insert(struct Node* p, int index, int x)
+	{
+		int i = 0;
+		// Check to see if the index is valid
+		if (index < 0 || index > Count(p))
+			return -1;
+
+		// Create a new node to insert
+		struct Node* t = NULL;
+		t = (struct Node*)malloc(sizeof(Node));
+		t->data = x;
+
+		// If index is 0, insert at the front of the linked list
+		if (index == 0)
+		{
+			t->next = first;
+			first = t;
+		}
+		else
+		{
+			// Move the pointer to the desired position for insertion
+			for (; i < index - 1; i++)
+				p = p->next;
+
+			// Insert the Node in the correct position and change the links accordingly
+			t->next = p->next;
+			p->next = t;
+		}
+
+		return 0;
+	}
+
+	// Bubble Sort 
+	void Sort(struct Node* p, bool descending = false)
+	{
+		int swapped;
+		struct Node* leading;
+		struct Node* trailing = NULL;
+		
+		// Check to see if the list is empty
+		if (p == NULL)
+			return;
+
+		do
+		{
+			swapped = 0;
+			leading = p;
+
+			while (leading->next != trailing)
+			{
+				if (!descending)
+				{
+					if (leading->data > leading->next->data)
+					{
+						// Swap the data 
+						int temp = leading->data;
+						leading->data = leading->next->data;
+						leading->next->data = temp;
+						swapped = 1;
+					}
+				}
+				else
+				{
+					if (leading->data < leading->next->data)
+					{
+						// Swap the data 
+						int temp = leading->data;
+						leading->data = leading->next->data;
+						leading->next->data = temp;
+						swapped = 1;
+					}
+				}
+				// Move the leading ptr to the next node
+			
+				leading = leading->next;
+			}
+			trailing = leading;
+		} while (swapped);
+	}
+
+	void SortedInsert(struct Node* p, int x)
+	{
+		// Sort the list
+		Sort(p);
+
+		// declare new and trailing pointers
+		struct Node* newNode, * trailing = NULL;
+
+		// Allocate new node to heap
+		newNode = (struct Node*)malloc(sizeof(struct Node));
+		newNode->data = x;
+		newNode->next = NULL;
+
+		// If there are no other nodes in the list, assign the first node to the newNode
+		if (first == NULL)
+			first = newNode;
+		else
+		{
+			// Search the list to find the correct position
+			while (p && p->data < x)
+			{
+				trailing = p;
+				p = p->next;
+			}
+
+			if (p == first)
+			{
+				newNode->next = first;
+				first = newNode;
+
+			}
+			else
+			{
+				newNode->next = trailing->next;
+				trailing->next = newNode;
+			}
+		}
+	}
+
 };
