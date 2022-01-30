@@ -391,4 +391,103 @@ struct C_LinkedList
 		}
 		return true;
 	}
+
+	void RemoveDuplicates(struct Node* p)
+	{
+		struct Node* q = p->next;
+
+		while (q != NULL)
+		{
+			// If data is not the same, move to the next node, P is tail node, Q is leading
+			if (p->data != q->data)
+			{
+				p = q;
+				q = q->next;
+			}
+			else
+			{
+				p->next = q->next;
+				free(q);
+				q = p->next;
+			}
+		}
+	}
+
+	/* Reversing Linked-Lists */
+	void ReverseData(struct Node* p)
+	{
+		/*
+			This reversal uses an array that will copy the data from the linked-list
+			then reverse copy the data back into the linked-list's data portion
+		*/
+		
+		// Use a new pointer and index to help traverse the linked-list
+		int index = 0;
+		struct Node* q = p;
+		// Create a pointer to an integer --> This will help create the needed array
+		int* A;
+		// Allocate size based on the number/Count of nodes in the linked-list
+		A = (int*)malloc(sizeof(int) * Count(p));
+
+		// Traverse the linked-list and copy the data of each node into the array
+		while (q != NULL)
+		{
+			A[index] = q->data;
+			q = q->next;
+			index++;
+		}
+		// Send q back to the front to traverse again for the reverse copy
+		q = p;
+		index--;
+
+		// Copy the data from the array back into the list
+		while (q != NULL)
+		{
+			q->data = A[index];
+			q = q->next;
+			index--;
+		}
+	}
+	
+	void ReverseLinks(struct Node* p)
+	{
+		/*
+			This function will reverse the linked list using sliding pointers; This is preferred over reversing 
+			the data because it only takes the space of the pointers rather than a copy of the actual data! Say that
+			the data you are moving is a Record rather than an int. You would be copying all the data of the Record rather
+			than just a pointer/link to that record. More space required, less efficient.
+
+				- 3 Pointers are needed so we do not lose track of the nodes when changing the links
+				- The pointers are as follows: 
+					- r --> Previous Node
+					- q --> Modified Node
+					- p --> Leading Node
+
+					Slide the pointers like this: r = q = p = p->next;
+		*/
+
+		struct Node* q = NULL, *r = NULL;
+
+		while (p != NULL)
+		{
+			r = q;
+			q = p;
+			p = p->next;
+			q->next = r;
+		}
+		
+		// First is the Global Head of the linked list!
+		first = q;
+	}
+	// Recursive reversal of the links
+	void RReverseLinks(struct Node* q, struct Node* p)
+	{
+		if (p != NULL)
+		{
+			RReverseLinks(p, p->next);
+			p->next = q;
+		}
+		else
+			first = q;
+	}
 };
