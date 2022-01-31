@@ -47,10 +47,11 @@ struct C_LinkedList
 		while (p != NULL)
 		{
 			// Print the data
-			printf("data: %d, Node Address: %p\n", p->data, p->next);
+			printf(" %d, ", p->data);
 			// Move to the next node
 			p = p->next;
 		}
+		printf("\n");
 	}
 
 	// Recursive Display --> If you want to print in reverse set value to true
@@ -511,5 +512,124 @@ struct C_LinkedList
 	void reverse(struct Node** head)
 	{
 		RReverseLinks(*head, head);
+	}
+	void DeleteList(struct Node** head)
+	{
+		struct Node* current = *head;
+		struct Node* next;
+
+		while (current != NULL)
+		{
+			next = current->next;
+			free(current);
+			current = next;
+		}
+		*head = NULL;
+	}
+	struct Node* Concat(struct Node*& first, struct Node*& second)
+	{
+		struct Node* third = first;
+
+		// Scroll to the end of the list
+		while (first->next != NULL)
+			first = first->next;
+
+		first->next = second;
+		
+		second = NULL;
+		first = NULL;
+
+		return third;
+	}
+
+	/*
+		This merge Function Takes two pointer References of Nodes and returns a
+		new merged and sorted linked-list. It also removes the old pointers
+		so there is now only one list!
+	*/
+
+	struct Node* Merge(struct Node*& first, struct Node*& second)
+	{
+		// Check to see if lists are sorted, if not Sort them
+		if (!IsSorted(first))
+			Sort(first); 
+		
+		if (!IsSorted(second))
+			Sort(second);
+
+		// Make two temporary pointers to lists
+		struct Node* last;
+		struct Node* third;
+
+		if (first->data < second->data)
+		{
+			third = last = first;
+			first = first->next;
+			third->next = NULL;
+		}
+		else
+		{
+			third = last = second;
+			second = second->next;
+			third->next = NULL;
+		}
+
+		while (first && second)
+		{
+			if (first->data < second->data)
+			{
+				last->next = first;
+				last = first;
+				first = first->next;
+				last->next = NULL;
+			}
+			else
+			{
+				last->next = second;
+				last = second;
+				second = second->next;
+				last->next = NULL;
+			}
+		}
+
+		// Link the remaining links if list is not null
+		if (first) last->next = first;
+		if (second) last->next = second;
+
+		// Remove the pointers to the list
+		first = NULL;
+		second = NULL;
+
+		// Return the new merged list
+		return third;
+	}
+
+	int CheckForLoop(struct Node* head)
+	{
+		struct Node* p, * q;
+		p = q = head;
+
+		while (p && q)
+		{
+			p = p->next;
+			q = q->next;
+
+			q = q ? q->next : q;
+
+			if (p == q)
+				return 1;
+		}
+		return 0;
+		//do
+		//{
+		//	p = p->next;
+		//	q = q->next;
+		//	q = q ? q->next : q;
+		//} while (p && q && p != q);
+
+		//if (p == q)
+		//	return 1;
+		//else
+		//	return 0;
 	}
 };
