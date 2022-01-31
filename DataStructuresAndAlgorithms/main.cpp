@@ -4,39 +4,23 @@ int main()
 {
 	int A[] = { 43, 18, 7, 21, 15 };
 	struct C_LinkedList cll; 
-	////struct Node* tempNode = NULL;
-	cll.Create(A, sizeof(A) / sizeof(A[0]));
+	struct Node* head = NULL;
+	struct Node* tempNode = NULL;
 
-
-	//cll.Display(first);
-	//cll.Sort(first);
-	//printf("Sorted\n");
-	//cll.Display(first);
-	cll.SortedInsert(first, 33);
-	cll.SortedInsert(first, 33);
-	cll.SortedInsert(first, 25);
-	cll.SortedInsert(first, 25);
-	//cll.Insert(first, 5, 99);
-	printf("After SortedInsert\n");
-	cll.Display(first);
-	//cll.Delete(first, 5);
-	printf("After Delete\n");
-	cll.Display(first);
-	if (cll.IsSorted(first))
-		printf("Sorted");
+	cll.Create(A, sizeof(A) / sizeof(A[0]), head);
+	
+	cll.Insert(head, 0, 44);
+	cll.Insert(head, 0, 18);
+	
+	if (head)
+		printf("NOT NUL\n");
 	else
-		printf("not Sorted!\n");
-	cll.RemoveDuplicates(first);
-	printf("Duplicates removed!\n");
-	cll.Display(first);
-	cll.ReverseData(first);
-	printf("Reversed Data!\n");
-	cll.Display(first);
-	cll.ReverseLinks(first);
-	printf("Reversed Links!\n");
-	cll.Display(first);
-	cll.RReverseLinks(NULL, first);
-	printf("Recursive Reversed Links!\n");
-	cll.Display(first);
+		printf("NULL\n");
+
+	cll.Display(head);
+	printf("Deleted %d", cll.Delete(head, 2));
+	cll.reverse(&head);
+	printf("Reversed Links\n");
+	cll.Display(head);
 	return 0;
 }

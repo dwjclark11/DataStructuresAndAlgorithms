@@ -7,23 +7,23 @@ struct Node
 	int data;
 	struct Node* next;
 
-} *first; // Becomes a global pointer
+};
 
 struct C_LinkedList
 {
 	// Create the linked list
-	void Create(int A[], int n)
+	void Create(int A[], int n, struct Node*& head)
 	{
 		int i; // Used for scanning the array
 		struct Node* t, * last;
 		// Allocate a new node 
-		first = (struct Node*)malloc(sizeof(struct Node));
+		head = (struct Node*)malloc(sizeof(struct Node));
 		// Assign the data to the first element of the array
-		first->data = A[0];
+		head->data = A[0];
 		// Set the next node to Null
-		first->next = NULL;
+		head->next = NULL;
 		// Set the last Node to equal the first node
-		last = first;
+		last = head;
 
 		// Loop through all the elements to assign the links 
 		for (i = 1; i < n; i++)
@@ -193,7 +193,7 @@ struct C_LinkedList
 	}
 
 	// This is an improved linear Search -->Move to front
-	struct Node* Search(struct Node* p, int key)
+	struct Node* Search(struct Node* p, int key, struct Node& head)
 	{
 		struct Node* q = NULL;
 
@@ -202,16 +202,16 @@ struct C_LinkedList
 			
 			if (key == p->data)
 			{
-				if (p != first)
+				if (p != &head)
 				{
 					q->next = p->next;
-					p->next = first;
-					first = p;
+					p->next = &head;
+					head = *p;
 					return p;
 				}
 				else
 				{
-					return first;
+					return &head;
 				}
 			}
 
@@ -221,8 +221,9 @@ struct C_LinkedList
 		return NULL;
 	}
 
-	int Insert(struct Node* p, int index, int x)
+	int Insert(/*struct Node* p, */struct Node*& head, int index, int x)
 	{
+		struct Node* p = head;
 		int i = 0;
 		// Check to see if the index is valid
 		if (index < 0 || index > Count(p))
@@ -236,8 +237,8 @@ struct C_LinkedList
 		// If index is 0, insert at the front of the linked list
 		if (index == 0)
 		{
-			t->next = first;
-			first = t;
+			t->next = head;
+			head = t;
 		}
 		else
 		{
@@ -254,7 +255,7 @@ struct C_LinkedList
 	}
 
 	// Bubble Sort 
-	void Sort(struct Node* p, bool descending = false)
+	void Sort(struct Node*& p, bool descending = false)
 	{
 		int swapped;
 		struct Node* leading;
@@ -301,8 +302,9 @@ struct C_LinkedList
 		} while (swapped);
 	}
 
-	void SortedInsert(struct Node* p, int x)
+	void SortedInsert(struct Node*& head, int x)
 	{
+		struct Node* p = head;
 		// Sort the list
 		Sort(p);
 
@@ -315,8 +317,8 @@ struct C_LinkedList
 		newNode->next = NULL;
 
 		// If there are no other nodes in the list, assign the first node to the newNode
-		if (first == NULL)
-			first = newNode;
+		if (head == NULL)
+			head = newNode;
 		else
 		{
 			// Search the list to find the correct position
@@ -326,10 +328,10 @@ struct C_LinkedList
 				p = p->next;
 			}
 
-			if (p == first)
+			if (p == head)
 			{
-				newNode->next = first;
-				first = newNode;
+				newNode->next = head;
+				head = newNode;
 			}
 			else
 			{
@@ -339,8 +341,9 @@ struct C_LinkedList
 		}
 	}
 
-	int Delete(struct Node* p, int index)
+	int Delete(struct Node*& head, int index)
 	{
+		struct Node* p = head;
 		// Declare Variables
 		struct Node* trail = NULL;
 		int x = -1, i;
@@ -351,9 +354,9 @@ struct C_LinkedList
 		// If the first node is to be deleted
 		if (index == 1)
 		{
-			trail = first;
-			x = first->data;
-			first = first->next;
+			trail = head;
+			x = head->data;
+			head = head->next;
 			free(trail);
 
 			// Return the deleted element
@@ -392,7 +395,7 @@ struct C_LinkedList
 		return true;
 	}
 
-	void RemoveDuplicates(struct Node* p)
+	void RemoveDuplicates(struct Node*& p)
 	{
 		struct Node* q = p->next;
 
@@ -414,7 +417,7 @@ struct C_LinkedList
 	}
 
 	/* Reversing Linked-Lists */
-	void ReverseData(struct Node* p)
+	void ReverseData(struct Node*& p)
 	{
 		/*
 			This reversal uses an array that will copy the data from the linked-list
@@ -449,8 +452,9 @@ struct C_LinkedList
 		}
 	}
 	
-	void ReverseLinks(struct Node* p)
+	void ReverseLinks(struct Node*& head)
 	{
+		struct Node* p = head;
 		/*
 			This function will reverse the linked list using sliding pointers; This is preferred over reversing 
 			the data because it only takes the space of the pointers rather than a copy of the actual data! Say that
@@ -477,17 +481,35 @@ struct C_LinkedList
 		}
 		
 		// First is the Global Head of the linked list!
-		first = q;
+		head = q;
 	}
 	// Recursive reversal of the links
-	void RReverseLinks(struct Node* q, struct Node* p)
+	void RReverseLinks(struct Node* head, struct Node** fhead)
 	{
-		if (p != NULL)
+		struct Node* first;
+		struct Node* rest;
+
+		if (head == NULL)
+			return;
+		
+		first = head;
+		rest = first->next;
+		
+		if (rest == NULL)
 		{
-			RReverseLinks(p, p->next);
-			p->next = q;
+			*fhead = first;
+			return;
 		}
-		else
-			first = q;
+
+		RReverseLinks(rest, fhead);
+
+		rest->next = first;
+		first->next = NULL;
+	}
+
+	// Wrapper for the Recursive Reverse
+	void reverse(struct Node** head)
+	{
+		RReverseLinks(*head, head);
 	}
 };
