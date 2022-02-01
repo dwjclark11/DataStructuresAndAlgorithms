@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 class Node
 {
 public:
@@ -12,12 +14,9 @@ class LinkedList
 private:
 	Node* head;
 
-	void Swap(Node* a, Node* b)
-	{
-		Node* temp = a;
-		a = b;
-		b = temp;
-	}
+	// Swap the nodes
+	void Swap1(int a, int b);
+	Node* Swap(Node* a, Node* b);
 
 public:
 	LinkedList() { head = nullptr; }
@@ -29,4 +28,8 @@ public:
 	int Delete(int index);
 	int Length();
 	void Sort();
+	bool IsSorted();
+	void RemoveDuplicates();
+	void ReverseData();
+	void ReverseLinks();
 };
