@@ -1,6 +1,7 @@
 #include "Cpp_Node.h"
 #include <iostream>
 
+
 void LinkedList::Swap1(int a, int b)
 {
 	Node* prevNode1 = nullptr, * prevNode2 = nullptr, * node1 = head, * node2 = head, * temp = nullptr;
@@ -55,6 +56,30 @@ Node* LinkedList::Swap(Node* a, Node* b)
 	return b;
 }
 
+void LinkedList::RReverseLinks(Node* head, Node** headPtr)
+{
+	Node* first;
+	Node* second;
+	
+	// If the list is empty, no need to reverse
+	if (!head)
+		return;
+
+	first = head;
+	second = first->next;
+
+	if (!second)
+	{
+		*headPtr = first;
+		return;
+	}
+
+	RReverseLinks(second, headPtr);
+
+	second->next = first;
+	first->next = nullptr;
+}
+
 LinkedList::LinkedList(int A[], int n)
 {
 	Node* last = nullptr, *t;
@@ -77,12 +102,12 @@ LinkedList::LinkedList(int A[], int n)
 LinkedList::~LinkedList()
 {
 	Node* p = head;
-
-	while (head)
+	Node* next;
+	while (p)
 	{
-		head = head->next;
+		next = p->next;
 		delete p;
-		p = head;
+		p = next;
 	}
 }
 
@@ -311,4 +336,101 @@ void LinkedList::ReverseLinks()
 
 	// Set the head node to the modified node;
 	head = q;
+}
+
+void LinkedList::Reverse()
+{
+	RReverseLinks(head, &head);
+}
+// Creates a new list with by concatinating the two, the calling list and the input list
+Node* LinkedList::Concat(Node** second)
+{
+	Node* first = head;
+	Node* third = head;
+
+	while (first->next)
+		first = first->next;
+
+	first->next = *second;
+
+	// Set the old lists to nullptr
+	*second = nullptr;
+	head = nullptr;
+
+	return third;
+}
+
+Node* LinkedList::Merge(LinkedList& list2)
+{
+	// Check to see if the calling list is sorted
+	if (!IsSorted())
+		Sort();
+	// Check to see if the second list is sorted
+	if (!list2.IsSorted())
+		list2.Sort();
+
+	Node* first = head;
+	Node* second = *list2.GetHead();
+	Node* last;
+	Node* third;
+
+	if (first->data < second->data)
+	{
+		third = last = first;
+		first = first->next;
+		third->next = nullptr;
+	}
+	else
+	{
+		third = last = second;
+		second = second->next;
+		third->next = nullptr;
+
+	}
+	while (first && second)
+	{
+		if (first->data < second->data)
+		{
+			last->next = first;
+			last = first;
+			first = first->next;
+			last->next = nullptr;
+		}
+		else
+		{
+			last->next = second;
+			last = second;
+			second = second->next;
+			last->next = nullptr;
+
+		}
+	}
+
+	// link the remaing list
+	if (first) last->next = first;
+	if (second) last->next = second;
+
+	// Set the ptrs to nullptr
+	head = nullptr;
+	*list2.GetHead() = nullptr;
+	
+	return third;
+}
+
+bool LinkedList::IsLooped()
+{
+	Node* p, * q;
+	p = q = head;
+
+	while (p && q)
+	{
+		p = p->next;
+		q = q->next;
+		// Check to see if q is nullptr, move q to next node if not nullptr
+		q = q ? q->next : q;
+
+		if (p == q)
+			return true;
+	}
+	return false;
 }

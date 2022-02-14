@@ -513,6 +513,7 @@ struct C_LinkedList
 	{
 		RReverseLinks(*head, head);
 	}
+
 	void DeleteList(struct Node** head)
 	{
 		struct Node* current = *head;
@@ -631,5 +632,149 @@ struct C_LinkedList
 		//	return 1;
 		//else
 		//	return 0;
+	}
+};
+
+struct Circ_LinkedList
+{
+	void Create(int* A, int n, struct Node*& head)
+	{
+		int i;
+		struct Node* t, *last;
+
+		head = (struct Node*)malloc(sizeof(struct Node));
+		head->data = A[0];
+		// Point next to head making it circular
+		head->next = head;
+		last = head;
+
+		for (i = 1; i < n; i++)
+		{
+			t = (struct Node*)malloc(sizeof(struct Node));
+			t->data = A[i];
+			t->next = last->next;
+			last->next = t;
+			last = t;
+		}
+	}
+
+	void Display(struct Node* head)
+	{
+		// Create a temporary node that points to head
+		struct Node* p = head;
+		do
+		{
+			printf("%d ", p->data);
+			
+			p = p->next;
+
+		} while (p != head);
+		printf("\n");
+	}
+
+	int Length(struct Node* p)
+	{
+		struct Node* temp = p;
+		int len = 0;
+
+		do
+		{
+			len++;
+			temp = temp->next;
+
+		} while (temp->next != p);
+
+		return len;
+	}
+
+	void Insert(int index, int x, struct Node* head)
+	{
+		struct Node* t, * p = head;
+		int i;
+		
+		// Check to see if the index is within the proper range
+		if (index < 0 || index > Length(head))
+		{
+			printf("Cannot insert at %d, because it is beyond the count of the list %d", index, Length(head));
+			return;
+		}
+		
+		// Insert at the head of the list
+		if (index == 0)
+		{
+			// Create Set the new node
+			t = (struct Node*)malloc(sizeof(struct Node));
+			t->data = x;
+			// Check to see if head is null and point to self
+			if (head == NULL)
+			{
+				head = t;
+				head->next = head;
+			}
+			else
+			{
+				while (p->next != head)
+					p = p->next;
+
+				p->next = t;
+				t->next = head;
+				head = t;
+			}
+		}
+		else // Insert at the given index
+		{
+			for (i = 0; i < index - 1; i++)
+				p = p->next;
+
+			t = (struct Node*)malloc(sizeof(Node));
+			t->data = x;
+			t->next = p->next;
+			p->next = t;
+		}
+	}
+
+	int Delete(struct Node** head, int index)
+	{
+		int i, x = 0;
+		// Check to see if the list is empty
+		if (*head == NULL)
+			return -1;
+
+		// Check to see if there is only one node
+		if ((*head)->next == *head)
+		{
+			x = (*head)->data;
+			free(*head);
+			*head = NULL;
+			return x;
+		}
+
+		struct Node* p = *head, * q;
+
+		// Check to see if the head has to be deleted
+		if (index == 1)
+		{
+			// Find the last node in the list
+			while (p->next != *head)
+				p = p->next;
+
+			p->next = (*head)->next;
+			
+			x = (*head)->data;
+			free(*head);
+			*head = p->next;
+
+		}
+		else
+		{
+			for (i = 0; i < index - 2; i++)
+				p = p->next;
+
+			q = p->next;
+			p->next = q->next;
+			x = q->data;
+			free(q);
+		}
+		return x;
 	}
 };
