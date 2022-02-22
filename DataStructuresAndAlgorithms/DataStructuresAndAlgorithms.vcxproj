@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
     <ClInclude Include="C_Style\C_Node.h" />
+    <ClInclude Include="C_Style\DoublyLinkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
