@@ -383,13 +383,12 @@ struct C_LinkedList
 		}
 	}
 
-	bool IsSorted(struct Node* p)
+	int IsSorted(struct Node* p)
 	{
-		struct Node* temp = p;
-		while (temp->next != NULL)
+		while (p->next != NULL)
 		{
-			if (temp->data < temp->next->data)
-				temp = temp->next;
+			if (p->data < p->next->data)
+				p = p->next;
 			else
 				return false;
 		}

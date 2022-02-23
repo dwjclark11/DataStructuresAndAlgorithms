@@ -22,8 +22,21 @@ int main()
 	list.Display(head);
 	list.Delete(0, head);
 	list.Display(head);
+	list.Reverse(head);
+	list.Display(head);
+	list.Sort(head);
+	list.Display(head);
+	list.Insert(15, 0, head);
+	list.Insert(8, 5, head);
+	list.Display(head);
+	list.SortedInsert(head, 4);
+	list.Display(head);
+	list.RemoveDuplicates(head);
+	list.Display(head);
 
-	printf("Length: %d", list.Length(head));
-
+	if (list.IsSorted(head))
+		printf("Length: %d", list.Length(head));
+	else
+		printf("Not Sorted!");
 	return 0;
 }
