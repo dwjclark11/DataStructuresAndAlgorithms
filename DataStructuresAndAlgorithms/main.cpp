@@ -33,6 +33,14 @@ int main()
 	list.Display(head);
 	list.RemoveDuplicates(head);
 	list.Display(head);
+	list.SortedInsert(head, 7);
+	list.SortedInsert(head, 9);
+	list.SortedInsert(head, 13);
+	list.SortedInsert(head, 14);
+
+	list.Display(head);
+	printf("Middle: %d\n", list.FindMiddleNumber(head));
+
 
 	if (list.IsSorted(head))
 		printf("Length: %d", list.Length(head));

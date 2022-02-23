@@ -289,5 +289,37 @@ struct DoublyLinkedList
 			}
 		}
 	}
+
+	/*
+		This function uses two temp pointers p,q.
+		It moves q over two times per loop and p only once;
+		Once q == null, p will be at the middle number or 
+		half way through the list
+	*/
+
+	int FindMiddleNumber(struct Node* head)
+	{
+		// Declare two temp pointers
+		struct Node* p, *q;
+
+		// Set both pointers to the head of the list
+		p = q = head;
+
+		// While q is not null
+		while (q)
+		{
+			// Move q to the next node
+			q = q->next;
+
+			// Check to see if q is not null, move q to the next node
+			if (q) q = q->next;
+
+			// Check to see if q is not null, move p to the next node
+			if (q) p = p->next;
+		}
+
+		// return the data at the middle node
+		return p->data;
+	}
 };
 
