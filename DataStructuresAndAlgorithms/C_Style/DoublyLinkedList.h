@@ -12,14 +12,18 @@ struct Node
 
 struct DoublyLinkedList
 {
-	void Create(int* A, int n, struct Node*& head)
+	void Create(int* A, int n, struct Node*& head, bool circular = true)
 	{
 		struct Node* t, * last;
 		int i;
 
 		head = (struct Node*)malloc(sizeof(struct Node));
 		head->data = A[0];
-		head->prev = head->next = NULL;
+
+		if (!circular)
+			head->prev = head->next = NULL;
+		else
+			head->prev = head->next = head;
 
 		last = head;
 
@@ -27,46 +31,88 @@ struct DoublyLinkedList
 		{
 			t = (struct Node*)malloc(sizeof(struct Node));
 			t->data = A[i];
-			t->next = last->next;
-			t->prev = last;
-			last->next = t;
-			last = t;
+			
+			if (!circular)
+			{
+				t->next = last->next;
+				t->prev = last;
+				last->next = t;
+				last = t;
+			}
+			else
+			{
+				t->next = head;
+				head->prev = t;
+				t->prev = last;
+				last->next = t;
+				last->prev = t;
+				last = t;
+			}
 		}
 	}
 
-	void Display(struct Node* p)
+	void Display(struct Node* p, bool circular = true)
 	{
 		struct Node* temp = p;
+		if (!p)
+			return;
 
-		while (temp)
+		if (!circular)
 		{
-			printf("%d ", temp->data);
-			temp = temp->next;
-
+			while (temp != NULL)
+			{
+				printf("%d ", temp->data);
+				temp = temp->next;
+			}
 		}
+		else
+		{
+			do
+			{
+				printf("%d ", temp->data);
+				temp = temp->next;
+			} while (temp != p);
+		}
+		// Create a new line after list
 		printf("\n");
 	}
 
-	int Length(struct Node* p)
+	int Length(struct Node* p, bool circular = true)
 	{
+		if (!p)
+			return 0;
+
 		struct Node* temp = p;
 		int len = 0;
-		while (temp)
+
+		if (!circular)
 		{
-			len++;
-			temp = temp->next;
-
+			while (temp)
+			{
+				len++;
+				temp = temp->next;
+			}
 		}
-
+		else
+		{
+			do
+			{
+				len++;
+				temp = temp->next;
+			} while (temp != p);
+		}
+		
 		return len;
 	}
 
-	int Insert(int x, int index, struct Node*& head)
+	int Insert(int x, int index, struct Node*& head, bool circular = true)
 	{
+		// Get the length to use throughout the function
+		int len = Length(head);
 		// Check to see if the index is valid
-		if (index < 0 || index > Length(head))
+		if (index < 0 || index > len)
 			return -1;
-
+		
 		// Create a new node to be inserted
 		struct Node* t;
 		t = (struct Node*)malloc(sizeof(Node));
@@ -74,14 +120,50 @@ struct DoublyLinkedList
 		// Set the data to the desired inserted data
 		t->data = x;
 
+		// If head is an empty list, set head to t
+		if (!head)
+		{
+			if (circular)
+			{
+				head = t;
+				head->next = head;
+				head->prev = head;
+			}
+			else
+			{
+				head = t;
+				head->next = NULL;
+				head->prev = NULL;
+			}
+
+			return 0;
+		}
+
 		// Insert at the front of the list
 		if (index == 0)
 		{
+			if (!circular)
+			{
+				t->next = head;
+				t->prev = NULL;
+				head->prev = t;
+				head = t;
+			}
+			else
+			{
+				t->next = head;
+				t->prev = head->prev;
+				head->prev->next = t;
+				head->prev = t;
+				head = t;		
+			}
+		}
+		else if (index == len)
+		{
 			t->next = head;
-			t->prev = NULL;
-
+			t->prev = head->prev;
+			head->prev->next = t;
 			head->prev = t;
-			head = t;
 		}
 		else // Insert at a given index
 		{
@@ -104,10 +186,13 @@ struct DoublyLinkedList
 		return 0;
 	}
 
-	int Delete(int index, struct Node*& head)
+	int Delete(int index, struct Node*& head, bool circular = true)
 	{
+		// Get the length to use throughout the function
+		int len = Length(head);
+
 		// Check to see if the index is valid
-		if (index < 0 || index > Length(head))
+		if (index < 0 || index > len)
 			return -1;
 
 		// Create a temp node*
@@ -116,13 +201,52 @@ struct DoublyLinkedList
 		// Delete the first Node
 		if (index == 0)
 		{
-			head = head->next;
-			
-			// if head is not NULL
-			if (head)
+			if (len == 1)
+			{
+				head->next = NULL;
 				head->prev = NULL;
+				
+				free(head);
+				head = NULL;
+				
+				return 0;
+			}
 
-			free(p);
+			if (!circular)
+			{
+				head = head->next;
+
+				// if head is not NULL
+				if (head)
+					head->prev = NULL;
+
+				free(p);
+			}
+			else
+			{
+				if (p)
+				{
+					p->prev->next = p->next;
+					p->next->prev = p->prev;
+
+					head = head->next;
+					
+					free(p);
+				}
+			}
+		}
+		else if (index == len)
+		{
+			int i = 1;
+			for (; i < index - 1; i++)
+				p = p->next;
+
+			p->next = head;
+
+			free(head->prev);
+
+			head->prev = p;
+
 		}
 		else // Delete at a given index
 		{
@@ -134,7 +258,7 @@ struct DoublyLinkedList
 
 			if(p->next)
 				p->next->prev = p->prev;
-
+			
 			free(p);
 		}
 		
@@ -144,19 +268,24 @@ struct DoublyLinkedList
 
 	void Reverse(struct Node*& head)
 	{
-		struct Node* temp, *p = head;
-
-		while (p)
+		// Check to see if the list is empty
+		struct Node* temp = head, *current = head->next, *p = head;
+		
+		do
 		{
-			temp = p->next;
-			p->next = p->prev;
-			p->prev = temp;
-			p = p->prev;
+			temp = current->next;
 
-			// Ensure that p is not NULL
-			if (p != NULL && p->next == NULL)
-				head = p;
-		}
+			current->next = p;
+			p->prev = current;
+			head->next = current;
+			current->prev = head;
+
+			p = current;
+			current = temp;
+
+		} while (temp != head);
+
+		head = p;
 	}
 
 	void Sort(struct Node*& p, bool descending = false)
@@ -173,8 +302,8 @@ struct DoublyLinkedList
 		{
 			swapped = 0;
 			leading = p;
-
-			while (leading->next != trailing)
+			trailing = leading->prev;
+			while (leading != trailing)
 			{
 				if (!descending)
 				{
@@ -239,7 +368,7 @@ struct DoublyLinkedList
 			{
 				newNode->next = head;
 				head = newNode;
-				head->prev = NULL;
+				head->prev = head;
 			}
 			else
 			{
@@ -252,15 +381,20 @@ struct DoublyLinkedList
 
 	int IsSorted(struct Node* p)
 	{
-		while (p->next)
+		struct Node* temp = p;
+		do
 		{
-			if (p->data < p->next->data)
-				p = p->next;
+			if (temp->data <= temp->next->data)
+			{
+				printf("temp: %d, temp->next: %d \n", temp->data, temp->next->data);
+				temp = temp->next;
+			}
+				
 			else
-				return -1;
-		}
+				return 0;
+		} while (temp->next != p);
 
-		return 0;
+		return 1;
 	}
 
 	void RemoveDuplicates(struct Node* p)

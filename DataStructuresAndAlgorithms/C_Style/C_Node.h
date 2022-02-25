@@ -643,6 +643,7 @@ struct Circ_LinkedList
 
 		head = (struct Node*)malloc(sizeof(struct Node));
 		head->data = A[0];
+
 		// Point next to head making it circular
 		head->next = head;
 		last = head;
