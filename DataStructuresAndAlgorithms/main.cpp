@@ -5,14 +5,20 @@
 
 #include "CPP_Style/DoublyLinkedList.h"
 #include "CPP_Style/SparseMatrixLL.h"
+#include "CPP_Style/PolynomialLL.h"
 
 
 int main()
 {
-	SparseMatrixLL sm;
-	sm.Display();
-	sm.Append(3, 2, 6);
-	std::cout << std::endl;
-	sm.Display();
+	PolynomialLL poly;
+	PolynomialLL poly2;
+
+	poly.Display();
+	
+	poly + poly2;
+
+	poly.Display();
+	//std::cout << "Eval: " << poly.Evaluate(3) << std::endl;
+
 	return 0;
 }
