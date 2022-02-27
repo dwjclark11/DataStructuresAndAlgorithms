@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="CPP_Style\Cpp_Node.cpp" />
     <ClCompile Include="CPP_Style\DoublyLinkedList.cpp" />
+    <ClCompile Include="CPP_Style\SparseMatrixLL.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
     <ClInclude Include="CPP_Style\DoublyLinkedList.h" />
+    <ClInclude Include="CPP_Style\SparseMatrixLL.h" />
     <ClInclude Include="C_Style\C_Node.h" />
     <ClInclude Include="C_Style\DoublyLinkedList.h" />
   </ItemGroup>

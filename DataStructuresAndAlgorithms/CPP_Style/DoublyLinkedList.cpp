@@ -32,15 +32,19 @@ DoublyLinkedList::DoublyLinkedList(int* A, int n)
 
 DoublyLinkedList::~DoublyLinkedList()
 {
-	while (head->next != head)
+	if (head)
 	{
-		Node* temp = head->next;
-		temp->next->prev = head;
-		head->next = temp->next;
-		delete temp;
+		while (head->next != head)
+		{
+			Node* temp = head->next;
+			temp->next->prev = head;
+			head->next = temp->next;
+			delete temp;
+			//std::cout << "Deleting Node!\n";
+		}
+		//std::cout << "Deleting Head!\n";
+		delete head;
 	}
-	
-	delete head;
 }
 
 void DoublyLinkedList::Display()
@@ -128,6 +132,45 @@ void DoublyLinkedList::InsertBack(int value)
 		head->prev->next = t;
 		head->prev = t;
 	}
+}
+
+void DoublyLinkedList::DeleteFront()
+{
+	// If the list is empty, nothing to delete
+	if (!head)
+		return;
+
+	Node* temp = head;
+	head = head->next;
+	head->prev = temp->prev;
+	temp->prev->next = head;
+
+	
+	delete temp;
+
+}
+
+void DoublyLinkedList::DeleteBack()
+{
+	// Check to see if list is empty
+	if (!head)
+		return;
+
+	if (Length() > 1)
+	{
+		Node* p = head->prev;
+		head->prev->prev->next = head;
+		head->prev = head->prev->prev;
+
+		delete p;
+	}
+	else
+	{
+		delete head;
+		head = nullptr;
+	}
+
+
 }
 
 int DoublyLinkedList::Length()

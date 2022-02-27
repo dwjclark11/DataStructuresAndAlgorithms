@@ -21,6 +21,8 @@ public:
 	void InsertFront(int value);
 	void Insert(int value, int index);
 	void InsertBack(int value);
+	void DeleteFront();
+	void DeleteBack();
 	int Length();
 	bool Empty();
 	bool IsSorted();
