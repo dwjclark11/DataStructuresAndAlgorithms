@@ -2,24 +2,27 @@
 #include <crtdbg.h>
 #include <iostream>
 
-#include "C_Style/C_Stack_wArray.h"
+#include "C_Style/C_Stack_wLinkedList.h"
 
 
 int main()
 {
-	struct Stack st;
-	Create(&st);
+	struct Node* top = NULL;
+	if(empty(top))
+		push(&top, 5);
+	else
+	{
 
-	push(&st, 10);
-	push(&st, 20);
-	push(&st, 30);
-	push(&st, 40);
+		push(&top, 25);
+		push(&top, 35);
+		push(&top, 45);
 
-	Display(st);
+	}
 
-	printf("%d\n", pop(&st));
-	
-	printf("peek: %d", peek(st, 2));
+	printf("Top: %d\n", GetTop(top));
+	Display(top);
+	pop(&top);
+	Display(top);
 
 	return 0;
 }
