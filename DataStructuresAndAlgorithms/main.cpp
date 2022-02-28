@@ -2,27 +2,24 @@
 #include <crtdbg.h>
 #include <iostream>
 
-#include "C_Style/C_Stack_wLinkedList.h"
+#include "CPP_Style/Stack.h"
+
 
 
 int main()
 {
-	struct Node* top = NULL;
-	if(empty(top))
-		push(&top, 5);
-	else
-	{
+	Stack<std::string> stack;
 
-		push(&top, 25);
-		push(&top, 35);
-		push(&top, 45);
+	stack.push("cpp");
+	stack.push("and");
+	stack.push("linked lists");
+	stack.push("using");
+	stack.push("implemented");
+	stack.push("stack");
 
-	}
-
-	printf("Top: %d\n", GetTop(top));
-	Display(top);
-	pop(&top);
-	Display(top);
+	stack.Display();
+	stack.pop();
+	stack.Display();
 
 	return 0;
 }

@@ -56,5 +56,8 @@
     <ClInclude Include="C_Style\C_Stack_wLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPP_Style\Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
