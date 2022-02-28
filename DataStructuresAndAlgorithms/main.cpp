@@ -2,23 +2,24 @@
 #include <crtdbg.h>
 #include <iostream>
 
-
-#include "CPP_Style/DoublyLinkedList.h"
-#include "CPP_Style/SparseMatrixLL.h"
-#include "CPP_Style/PolynomialLL.h"
+#include "C_Style/C_Stack_wArray.h"
 
 
 int main()
 {
-	PolynomialLL poly;
-	PolynomialLL poly2;
+	struct Stack st;
+	Create(&st);
 
-	poly.Display();
+	push(&st, 10);
+	push(&st, 20);
+	push(&st, 30);
+	push(&st, 40);
+
+	Display(st);
+
+	printf("%d\n", pop(&st));
 	
-	poly + poly2;
-
-	poly.Display();
-	//std::cout << "Eval: " << poly.Evaluate(3) << std::endl;
+	printf("peek: %d", peek(st, 2));
 
 	return 0;
 }
