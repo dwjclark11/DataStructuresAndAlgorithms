@@ -21,6 +21,8 @@ public:
 	void push(T x);
 	T pop();
 	void Display();
+	bool isEmpty();
+	T data();
 };
 
 template<typename T>
@@ -77,3 +79,22 @@ inline void Stack<T>::Display()
 
 	std::cout << std::endl;
 }
+
+template<typename T>
+inline bool Stack<T>::isEmpty()
+{
+	if (!top)
+		return true;
+
+	return false;
+}
+
+template<typename T>
+inline T Stack<T>::data()
+{
+	if (!top)
+		return T();
+	
+	return top->data;
+}
+

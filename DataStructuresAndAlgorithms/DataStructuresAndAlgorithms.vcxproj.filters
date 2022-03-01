@@ -59,5 +59,8 @@
     <ClInclude Include="CPP_Style\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPP_Style\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -194,9 +194,9 @@ int DoublyLinkedList::Length()
 bool DoublyLinkedList::Empty()
 {
 	if (Length() > 0)
-		return true;
+		return false;
 
-	return false;
+	return true;
 }
 
 bool DoublyLinkedList::IsSorted()
