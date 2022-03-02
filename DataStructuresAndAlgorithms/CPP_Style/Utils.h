@@ -4,27 +4,12 @@
 struct Utils
 {
 	// This is a function that checks if the parenthesis are matching
-	static int isBalanced(const char* exp, Stack<char> st)
-	{
-		for (int i = 0; exp[i] != '\0'; i++)
-		{
-			if (exp[i] == '(' || exp[i] == '[' || exp[i] == '{')
-				st.push(exp[i]);
-			else if (exp[i] == ')' || exp[i] == ']' || exp[i] == '}')
-			{
-				if (st.isEmpty())
-					return 0;
-				if (st.data() == '(' && exp[i] == ')')
-					st.pop();
-				else if (st.data() == '[' && exp[i] == ']')
-					st.pop();
-				else if (st.data() == '{' && exp[i] == '}')
-					st.pop();
-				else
-					return 0;
-			}
-		}
-
-		return st.isEmpty() ? 1 : 0;
-	}
+	static int isBalanced(const char* exp, Stack<char> st);
+	
+	// Takes a char and checks to see if it is an operand
+	static int isOperand(char x);
+	// Set the precendece of the current character
+	static int precedence(char x);
+	// Convert an infix expression to postfix
+	static std::string convertExp(const std::string& infix);
 };

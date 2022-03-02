@@ -30,6 +30,9 @@
     <ClCompile Include="CPP_Style\PolynomialLL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CPP_Style\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Style\C_Node.h">

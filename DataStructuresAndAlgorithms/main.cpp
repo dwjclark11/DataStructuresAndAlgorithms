@@ -7,8 +7,8 @@
 
 int main()
 {
-	const char* exp = "{([a+b]*[c-d])}";
+	std::string exp = "a+b*c-d/e";
 	Stack<char> st;
-	std::cout << Utils::isBalanced(exp, st);
+	std::cout << Utils::convertExp(std::move(exp));
 	return 0;
 }
