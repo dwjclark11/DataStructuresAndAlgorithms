@@ -15,7 +15,7 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Sparse Matrix Representation using Linked List
 *    Stack Template using linked list
 *    Some Utiliy functions using stack
-    *    Convert from infix to postfix - Simple
-    *    Convert from infix to postfix - more advanced
+    *  Convert from infix to postfix - Simple
+    *  Convert from infix to postfix - more advanced
 
 I will continue to add more as I go through the course
