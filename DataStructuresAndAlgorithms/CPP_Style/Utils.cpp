@@ -26,10 +26,21 @@ int Utils::isBalanced(const char* exp, Stack<char> st)
 
 int Utils::isOperand(char x)
 {
-	if (x == '+' || x == '-' || x == '*' || x == '/')
-		return 0;
-	else
-		return 1;
+	switch (x)
+	{
+		case '+': return 0; break;
+		case '-': return 0; break;
+		case '*': return 0; break;
+		case '/': return 0; break;
+		case '^': return 0; break;
+		case '(': return 0; break;
+		case '{': return 0; break;
+		case '[': return 0; break;
+		case ')': return 0; break;
+		case '}': return 0; break;
+		case ']': return 0; break;
+		default: return 1; break;
+	}
 }
 
 int Utils::precedence(char x)
@@ -47,7 +58,7 @@ std::string Utils::convertExp(const std::string& infix)
 	Stack<char> st;
 	std::string postfix = "";
 
-	int i = 0, j = 0;
+	int i = 0;
 
 	while (infix[i] != '\0')
 	{
@@ -66,6 +77,82 @@ std::string Utils::convertExp(const std::string& infix)
 	while (!st.isEmpty())
 		postfix += st.pop();
 	
+
+	return postfix;
+}
+
+int Utils::outPrecedence(char x)
+{
+	switch (x)
+	{
+	case '+': return 1; break;
+	case '-': return 1; break;
+	case '*': return 3; break;
+	case '/': return 3; break;
+	case '^': return 6; break;
+	case '(': return 7; break;
+	case '{': return 7; break;
+	case '[': return 7; break;
+	case ')': return 0; break;
+	case '}': return 0; break;
+	case ']': return 0; break;
+	default: return 0; break;
+	}
+}
+
+int Utils::inPrecedence(char x)
+{
+	switch (x)
+	{
+	case '+': return 2; break;
+	case '-': return 2; break;
+	case '*': return 4; break;
+	case '/': return 4; break;
+	case '^': return 5; break; // R-L associative precedence decreases inside the stack
+	case '(': return 0; break;
+	case '{': return 0; break;
+	case '[': return 0; break;
+	default: return 0; break;
+	}
+}
+
+std::string Utils::convertExpAdv(const std::string& infix)
+{
+	Stack<char> st;
+	std::string postfix = "";
+
+	int i = 0;
+
+	while (infix[i] != '\0')
+	{
+		if (isOperand(infix[i]))
+			postfix += infix[i++];
+		else
+		{
+			if (outPrecedence(infix[i]) > inPrecedence(st.data()))
+				st.push(infix[i++]);
+			else
+			{
+				if (inPrecedence(st.data()) > 0)
+					postfix += st.pop();
+				else
+					st.pop();
+
+				i++;
+			}
+				
+		}
+	}
+
+	while (!st.isEmpty())
+	{
+		if (inPrecedence(st.data()) > 0)
+			postfix += st.pop();
+		else
+			st.pop();
+	}
+		
+
 
 	return postfix;
 }
