@@ -1,2 +1,19 @@
 # DataStructuresAndAlgorithms
 This is a group of data structures from the Mastering Data Structures and Algorithms in C and C++ course that I am currently taking. I will be updating this daily and adding new structures as I complete them in the course. I am also changing the structures based on need.  This course was to help increase my understanding of data structures and to become a better overall programmer.
+
+## Data Structures Completed:
+### C Style
+*    Singly Linked List
+*    Doubly Linked List
+*    Stack using array
+*    Stack using Linked List
+
+### C++ Style
+*    Singly Linked List
+*    Doubly Linked List
+*    Polynomial Representation using Linked List
+*    Sparse Matrix Representation using Linked List
+*    Stack Template using linked list
+*    Some Utiliy functions using stack
+
+I will continue to add more as I go through the course
