@@ -136,11 +136,11 @@ std::string Utils::convertExpAdv(const std::string& infix)
 				if (inPrecedence(st.data()) > 0)
 					postfix += st.pop();
 				else
+				{
 					st.pop();
-
-				i++;
+					i++;
+				}
 			}
-				
 		}
 	}
 
@@ -152,8 +152,31 @@ std::string Utils::convertExpAdv(const std::string& infix)
 			st.pop();
 	}
 		
-
-
 	return postfix;
+}
+
+int Utils::evalPostfix(const std::string& postfix)
+{
+	Stack<int> st;
+	int x1, x2, r;
+	for (int i = 0; postfix[i] != '\0'; i++)
+	{
+		if (isOperand(postfix[i]))
+			st.push(postfix[i] - '0'); // we must subtract '0' [48] to get the correct integer
+		else
+		{
+			x2 = st.pop(); x1 = st.pop();
+			switch (postfix[i])
+			{
+			case '+': r = x1 + x2; break;
+			case '-': r = x1 - x2; break;
+			case '*': r = x1 * x2; break;
+			case '/': r = x1 / x2; break;
+			}
+			st.push(r);
+		}
+	}
+
+	return st.pop();
 }
 

@@ -16,4 +16,6 @@ struct Utils
 	static int outPrecedence(char x);
 	static int inPrecedence(char x);
 	static std::string convertExpAdv(const std::string& infix);
+
+	static int evalPostfix(const std::string& postfix);
 };
