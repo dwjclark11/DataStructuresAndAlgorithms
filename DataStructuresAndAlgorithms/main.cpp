@@ -2,16 +2,24 @@
 #include <crtdbg.h>
 #include <iostream>
 
-#include "CPP_Style/Stack.h"
-#include "CPP_Style/Utils.h"
+#include "CPP_Style/Queue_wArray.h"
 
 int main()
 {
-	std::string exp = "a+b*c-d/e";
-	std::string exp2 = "2+3*4-8/2";
-	Stack<char> st;
-	std::cout << Utils::convertExp(std::move(exp)) << std::endl;
-	//std::cout << Utils::convertExpAdv(std::move(exp2)) << std::endl;
-	std::cout << Utils::evalPostfix(Utils::convertExpAdv(std::move(exp2)));
+	Queue<float> q;
+	q.push(75.f);
+	q.push(175.f);
+	q.push(175.f);
+	q.push(175.f);
+	q.push(175.f);
+	q.push(275.f);
+	q.push(375.f);
+	q.Display();
+
+	q.push(275.f);
+	q.Display();
+
+	std::cout << "Front: " << q.get_front() << std::endl;
+	std::cout << "back: " << q.get_back() << std::endl;
 	return 0;
 } 

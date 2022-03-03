@@ -150,13 +150,18 @@
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
     <ClInclude Include="CPP_Style\DoublyLinkedList.h" />
     <ClInclude Include="CPP_Style\PolynomialLL.h" />
+    <ClInclude Include="CPP_Style\Queue_wArray.h" />
     <ClInclude Include="CPP_Style\SparseMatrixLL.h" />
     <ClInclude Include="CPP_Style\Stack.h" />
     <ClInclude Include="CPP_Style\Utils.h" />
     <ClInclude Include="C_Style\C_Node.h" />
+    <ClInclude Include="C_Style\C_Queue.h" />
     <ClInclude Include="C_Style\C_Stack_wArray.h" />
     <ClInclude Include="C_Style\C_Stack_wLinkedList.h" />
     <ClInclude Include="C_Style\DoublyLinkedList.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CPP_Style\Queue_wArray.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
