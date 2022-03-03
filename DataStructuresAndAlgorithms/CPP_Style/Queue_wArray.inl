@@ -1,7 +1,7 @@
 #include "Queue_wArray.h"
 
 template<typename T>
-inline Queue<T>::Queue()
+inline Queue_A<T>::Queue()
 {
     front = rear = -1;
     size = 10;
@@ -9,7 +9,7 @@ inline Queue<T>::Queue()
 }
 
 template<typename T>
-inline Queue<T>::Queue(int size)
+inline Queue_A<T>::Queue(int size)
 {
     front = rear = -1;
     this->size = 10;
@@ -17,7 +17,7 @@ inline Queue<T>::Queue(int size)
 }
 
 template<typename T>
-inline void Queue<T>::push(T x)
+inline void Queue_A<T>::push(T x)
 {
     if ((rear + 1) % size == front)
         std::cout << "Queue is Full\n";
@@ -29,7 +29,7 @@ inline void Queue<T>::push(T x)
 }
 
 template<typename T>
-inline T Queue<T>::pop()
+inline T Queue_A<T>::pop()
 {
     if (front == rear)
         std::cout << "Queue is empty\n";
@@ -43,14 +43,14 @@ inline T Queue<T>::pop()
 }
 
 template<typename T>
-inline T Queue<T>::get_front()
+inline T Queue_A<T>::get_front()
 {
     T first = Q[front + 1];
     return first;
 }
 
 template<typename T>
-inline T Queue<T>::get_back()
+inline T Queue_A<T>::get_back()
 {
     T back = Q[rear];
 
@@ -58,7 +58,7 @@ inline T Queue<T>::get_back()
 }
 
 template<typename T>
-inline void Queue<T>::Display()
+inline void Queue_A<T>::Display()
 {
     int i = front + 1;
     do

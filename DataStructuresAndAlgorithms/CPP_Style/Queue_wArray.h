@@ -4,7 +4,7 @@
     This is a simple Queue template class that uses an array
 */
 template <typename T>
-class Queue
+class Queue_A
 {
 private:
     int front;
