@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <vector>
 template <typename T>
 class Stack
 {
@@ -21,7 +21,9 @@ public:
 	void push(T x);
 	T pop();
 	void Display();
+	void RDisplay();
 	bool isEmpty();
+	int size();
 	T data();
 };
 
@@ -77,7 +79,27 @@ inline void Stack<T>::Display()
 		p = p->next;
 	}
 
-	std::cout << std::endl;
+	//std::cout << std::endl;
+}
+
+template<typename T>
+inline void Stack<T>::RDisplay()
+{
+	int len = size();
+	std::vector<T> t;
+	Node* p = top;
+	int i = size() - 1;
+	while (p && i >= 0)
+	{
+		t.push_back(p->data);
+		p = p->next;
+		i--;
+	}
+
+	for (const auto& data : t)
+	{
+		std::cout << data << " ";
+	}
 }
 
 template<typename T>
@@ -87,6 +109,21 @@ inline bool Stack<T>::isEmpty()
 		return true;
 
 	return false;
+}
+
+template<typename T>
+inline int Stack<T>::size()
+{
+	Node* p = top;
+	int len = 0;
+
+	while (p)
+	{
+		len++;
+		p = p->next;
+	}
+
+	return len;
 }
 
 template<typename T>

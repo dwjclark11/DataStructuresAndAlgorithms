@@ -152,6 +152,7 @@
     <ClInclude Include="CPP_Style\PolynomialLL.h" />
     <ClInclude Include="CPP_Style\Queue.h" />
     <ClInclude Include="CPP_Style\Queue_wArray.h" />
+    <ClInclude Include="CPP_Style\Queue_wStack.h" />
     <ClInclude Include="CPP_Style\SparseMatrixLL.h" />
     <ClInclude Include="CPP_Style\Stack.h" />
     <ClInclude Include="CPP_Style\Utils.h" />

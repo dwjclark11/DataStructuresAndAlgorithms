@@ -1,22 +1,23 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #include <iostream>
-#include "CPP_Style/Queue.h"
+#include "CPP_Style/Queue_wStack.h"
 
 int main()
 {
-	Queue<int> q;
-
-	q.push_back(7);
-	q.push_back(6);
-	q.push_back(9);
-	q.push_back(1);
-
-	q.Display();
-	std::cout << "Size: " << q.size() << std::endl;
-	std::cout << "front: " << q.pop_front() << std::endl;
-	std::cout << "Size: " << q.size() << std::endl;
-
+	Queue_S<int> q;
+	q.enqueue(15);
+	q.enqueue(25);
+	q.enqueue(35);
+	q.enqueue(45);
+	q.dequeue();
+	q.enqueue(55);
+	q.enqueue(65);
+	q.dequeue();
+	q.enqueue(55);
+	q.enqueue(65);
+	q.enqueue(55);
+	q.enqueue(65);
 	q.Display();
 
 	return 0;

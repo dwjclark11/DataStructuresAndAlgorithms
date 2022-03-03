@@ -77,6 +77,9 @@
     <ClInclude Include="CPP_Style\Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPP_Style\Queue_wStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="CPP_Style\Queue_wArray.inl">
