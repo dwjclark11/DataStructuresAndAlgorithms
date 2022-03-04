@@ -1,24 +1,17 @@
-#include <stdlib.h>
-#include <crtdbg.h>
-#include <iostream>
-#include "CPP_Style/Queue_wStack.h"
+
+#include "C_Style/C_Binary_Tree.h"
 
 int main()
 {
-	Queue_S<int> q;
-	q.enqueue(15);
-	q.enqueue(25);
-	q.enqueue(35);
-	q.enqueue(45);
-	q.dequeue();
-	q.enqueue(55);
-	q.enqueue(65);
-	q.dequeue();
-	q.enqueue(55);
-	q.enqueue(65);
-	q.enqueue(55);
-	q.enqueue(65);
-	q.Display();
+	struct TNode* root = NULL;
+	
+	CreateTree(&root);
+	printf("Pre Order: ");
+	PreOrder_Display(root);
+	printf("\nPost Order: ");
+	PostOrder_Display(root);
+	printf("\nIn Order: ");
+	InOrder_Display(root);
 
 	return 0;
 } 

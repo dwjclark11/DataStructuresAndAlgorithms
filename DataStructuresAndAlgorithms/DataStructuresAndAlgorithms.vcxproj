@@ -156,6 +156,7 @@
     <ClInclude Include="CPP_Style\SparseMatrixLL.h" />
     <ClInclude Include="CPP_Style\Stack.h" />
     <ClInclude Include="CPP_Style\Utils.h" />
+    <ClInclude Include="C_Style\C_Binary_Tree.h" />
     <ClInclude Include="C_Style\C_Node.h" />
     <ClInclude Include="C_Style\C_Queue.h" />
     <ClInclude Include="C_Style\C_Stack_wArray.h" />
