@@ -29,8 +29,9 @@ private:
 	void I_PostOrder(Tree::Node* p);
 	void I_InOrder(Tree::Node* p);
 
-
 	void LevelOrder(Tree::Node* p);
+	
+	
 	int height(Tree::Node* p);
 
 public:
@@ -43,7 +44,7 @@ public:
 	void InOrderDisplay();
 	void PostOrderDisplay();
 	void PreOrderDisplay();
-
+	void LevelOrderDisplay();
 	// Wrapper for height()
 	int GetHeight();
 

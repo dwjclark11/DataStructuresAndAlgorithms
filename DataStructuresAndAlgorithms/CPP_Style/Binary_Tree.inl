@@ -96,27 +96,23 @@ void Tree<T>::InOrder(Tree::Node* p)
 template <typename T>
 void Tree<T>::LevelOrder(Tree::Node* p)
 {
-	Queue<Node**> levelQueue;
-
 	std::cout << p->data << " ";
-
 	// Push the root to the back of the queue
-	levelQueue.push_back(p);
+	q.push_back(&p);
 
-	while (!levelQueue.isEmpty())
+	while (q.size() > 0)
 	{
-		p = q.pop_front();
-
+		p = *q.pop_front();
 		if (p->lChild)
 		{
 			std::cout << p->lChild->data << " ";
-			q.push_back(p->lChild);
+			q.push_back(&p->lChild);
 		}
 
 		if (p->rChild)
 		{
 			std::cout << p->rChild->data << " ";
-			q.push_back(p->rChild);
+			q.push_back(&p->rChild);
 		}
 	}
 }
@@ -199,6 +195,12 @@ void Tree<T>::PreOrderDisplay()
 		PreOrder(root);
 	else
 		I_PreOrder(root);
+}
+
+template<typename T>
+inline void Tree<T>::LevelOrderDisplay()
+{
+	LevelOrder(root);
 }
 
 template <typename T>

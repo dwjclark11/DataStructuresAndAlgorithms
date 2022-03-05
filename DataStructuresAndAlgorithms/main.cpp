@@ -7,7 +7,7 @@ int main()
 
 	tree.CreateTree();
 
-	tree.PostOrderDisplay();
+	tree.LevelOrderDisplay();
 
 
 	return 0;
