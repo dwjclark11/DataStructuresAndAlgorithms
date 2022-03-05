@@ -19,5 +19,7 @@ This is a group of data structures from the Mastering Data Structures and Algori
      * Convert from infix to postfix - Simple
      * Convert from infix to postfix - more advanced
 *    Queue Template using array
+*    Queue Template using Linked List
+*    Queue Template using 2 Stacks
 
 I will continue to add more as I go through the course
