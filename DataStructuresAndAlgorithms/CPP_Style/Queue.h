@@ -25,6 +25,7 @@ public:
 	T get_front();
 	T get_back();
 	void Display();
+	inline bool isEmpty() { return front == rear; }
 };
 
 #include "Queue.inl"

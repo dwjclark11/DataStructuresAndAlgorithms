@@ -147,6 +147,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CPP_Style\Binary_Tree.h" />
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
     <ClInclude Include="CPP_Style\DoublyLinkedList.h" />
     <ClInclude Include="CPP_Style\PolynomialLL.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="C_Style\Q_QueueLL.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CPP_Style\Binary_Tree.inl" />
     <None Include="CPP_Style\Queue.inl" />
     <None Include="CPP_Style\Queue_wArray.inl" />
   </ItemGroup>
