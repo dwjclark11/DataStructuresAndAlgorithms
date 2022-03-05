@@ -227,9 +227,6 @@ void DoublyLinkedList::Sort()
 	Node* leading;
 	Node* trailing;
 
-	if (!head)
-		return;
-
 	do
 	{
 		swapped = 0;

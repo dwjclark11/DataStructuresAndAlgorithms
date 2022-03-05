@@ -86,6 +86,9 @@
     <ClInclude Include="CPP_Style\Binary_Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPP_Style\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="CPP_Style\Queue_wArray.inl">
@@ -95,6 +98,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="CPP_Style\Binary_Tree.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="CPP_Style\List.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

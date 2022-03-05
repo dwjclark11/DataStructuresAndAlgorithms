@@ -30,9 +30,8 @@ private:
 	void I_InOrder(Tree::Node* p);
 
 	void LevelOrder(Tree::Node* p);
-	
-	
 	int height(Tree::Node* p);
+	int count(Tree::Node* p);
 
 public:
 	Tree();
@@ -47,6 +46,8 @@ public:
 	void LevelOrderDisplay();
 	// Wrapper for height()
 	int GetHeight();
+	// Get the number of nodes
+	int GetCount();
 
 	//Node* GetRoot() { return root; }
 };

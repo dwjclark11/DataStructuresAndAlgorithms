@@ -12,6 +12,7 @@ Tree<T>::Tree()
 template <typename T>
 Tree<T>::~Tree()
 {
+	// This is the same as post order except delete instead of print
 	long temp = 0;
 	Stack<Node*> st;
 	while (root || !st.isEmpty())
@@ -252,7 +253,7 @@ int Tree<T>::height(Tree::Node* p)
 {
 	int x = 0, y = 0;
 	if (!p)
-		return 0;
+		return -1;
 
 	x = height(p->lChild);
 	y = height(p->rChild);
@@ -262,9 +263,26 @@ int Tree<T>::height(Tree::Node* p)
 		return y + 1;
 }
 
+template<typename T>
+inline int Tree<T>::count(Tree::Node* p)
+{
+	if (p)
+	{
+		return count(p->lChild) + count(p->rChild) + 1;
+	}
+
+	return 0;
+}
+
 template <typename T>
 int Tree<T>::GetHeight()
 {
 	// Wrapper for height function
 	return height(root);
+}
+
+template<typename T>
+inline int Tree<T>::GetCount()
+{
+	return count(root);
 }
