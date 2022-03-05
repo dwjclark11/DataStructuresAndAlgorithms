@@ -12,7 +12,33 @@ Tree<T>::Tree()
 template <typename T>
 Tree<T>::~Tree()
 {
+	long temp = 0;
+	Stack<Node*> st;
+	while (root || !st.isEmpty())
+	{
+		if (root)
+		{
+			st.push(root);
+			root = root->lChild;
+		}
+		else
+		{
+			temp = reinterpret_cast<long>(st.pop());
 
+			if (temp > 0)
+			{
+				st.push(reinterpret_cast<Node*>(-temp));
+				root = reinterpret_cast<Node*>(temp)->rChild;
+			}
+			else
+			{
+				temp = -temp;
+				delete reinterpret_cast<Node*>(temp);
+				root = nullptr;
+				//std::cout << "Deleted\n";
+			}
+		}
+	}
 }
 
 template <typename T>
