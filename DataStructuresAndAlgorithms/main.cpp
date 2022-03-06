@@ -1,27 +1,20 @@
 
-#include "CPP_Style/List.h"
+#include "CPP_Style/Vector.h"
+#include "CPP_Style/Utils.h"
 
 int main()
 {
-	List<int> list;
+	Vector<float> vec;
 
-	list.push_back(7.5);
-	list.push_back(8.5);
-	list.push_back(4.5);
-
-	if (!list.empty())
-		list.Display();
-
-	auto val = list.pop_back();
-	auto val2 = list.pop_front();
-	if (list.length() > 0)
-		list.Display();
-
-	list.push_front(val);
-	list.push_back(val2);
-
-	list.Display();
-
-
+	vec.push_back(8.5f);
+	vec.push_back(5.5f);
+	vec.push_back(1.5f);
+	vec.insert(2, 22.0);
+	//vec.pop_back();
+	vec.push_back(14.1);
+	vec.push_back(14.1);
+	vec.push_back(14.1);
+	vec.push_back(14.1);
+	
 	return 0;
 } 

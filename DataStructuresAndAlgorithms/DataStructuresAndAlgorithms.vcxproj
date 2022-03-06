@@ -158,6 +158,7 @@
     <ClInclude Include="CPP_Style\SparseMatrixLL.h" />
     <ClInclude Include="CPP_Style\Stack.h" />
     <ClInclude Include="CPP_Style\Utils.h" />
+    <ClInclude Include="CPP_Style\Vector.h" />
     <ClInclude Include="C_Style\C_Binary_Tree.h" />
     <ClInclude Include="C_Style\C_Node.h" />
     <ClInclude Include="C_Style\C_Queue.h" />
@@ -171,6 +172,7 @@
     <None Include="CPP_Style\List.inl" />
     <None Include="CPP_Style\Queue.inl" />
     <None Include="CPP_Style\Queue_wArray.inl" />
+    <None Include="CPP_Style\Vector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

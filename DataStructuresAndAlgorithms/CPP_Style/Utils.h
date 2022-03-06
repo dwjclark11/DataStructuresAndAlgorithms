@@ -1,5 +1,6 @@
 #pragma once
 #include "Stack.h"
+#include "Vector.h"
 
 struct Utils
 {
@@ -18,4 +19,16 @@ struct Utils
 	static std::string convertExpAdv(const std::string& infix);
 
 	static int evalPostfix(const std::string& postfix);
+
+	template <typename T>
+	static void display_Vector(Vector<T>& vec);
 };
+
+template<typename T>
+inline void Utils::display_Vector(Vector<T>& vec)
+{
+	for (int i = 0; i < vec.size(); i++)
+		std::cout << vec[i] << " ";
+
+	std::cout << std::endl;
+}
