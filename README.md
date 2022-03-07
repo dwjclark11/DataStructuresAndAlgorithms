@@ -8,6 +8,8 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Stack using array
 *    Stack using Linked List
 *    Queue using array
+*    Binary Tree Implementation
+*    Binary Search Tree (BST) Implementation
 
 ### C++ Style
 *    Vector template class (ADT) Dynamic Array
