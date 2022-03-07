@@ -1,20 +1,27 @@
 
-#include "CPP_Style/Vector.h"
-#include "CPP_Style/Utils.h"
+#include "C_Style/BST.h"
 
 int main()
 {
-	Vector<float> vec;
+	Node* root = NULL;
+	Node* temp = NULL;
 
-	vec.push_back(8.5f);
-	vec.push_back(5.5f);
-	vec.push_back(1.5f);
-	vec.insert(2, 22.0);
-	//vec.pop_back();
-	vec.push_back(14.1);
-	vec.push_back(14.1);
-	vec.push_back(14.1);
-	vec.push_back(14.1);
-	
+	RInsert(&root, 50);
+	RInsert(&root, 10);
+	RInsert(&root, 40);
+	RInsert(&root, 20);
+	RInsert(&root, 30);
+
+	Delete(&root, 50);
+
+	InOrder(root);
+
+	temp = search(root, 4);
+
+	if (temp)
+		printf("element %d is found\n", temp->data);
+	else
+		printf("element is not found\n");
+
 	return 0;
 } 
