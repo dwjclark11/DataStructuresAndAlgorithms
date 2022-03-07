@@ -10,6 +10,7 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Queue using array
 
 ### C++ Style
+*    Vector template class (ADT) Dynamic Array
 *    Singly Linked List
 *    Doubly Linked List
 *    Polynomial Representation using Linked List
