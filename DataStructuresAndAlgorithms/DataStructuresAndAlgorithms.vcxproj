@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPP_Style\Binary_Tree.h" />
+    <ClInclude Include="CPP_Style\BST.h" />
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
     <ClInclude Include="CPP_Style\DoublyLinkedList.h" />
     <ClInclude Include="CPP_Style\List.h" />
@@ -170,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CPP_Style\Binary_Tree.inl" />
+    <None Include="CPP_Style\BST.inl" />
     <None Include="CPP_Style\List.inl" />
     <None Include="CPP_Style\Queue.inl" />
     <None Include="CPP_Style\Queue_wArray.inl" />

@@ -1,27 +1,31 @@
 
-#include "C_Style/BST.h"
+#include "CPP_Style/BST.h"
 
 int main()
 {
-	Node* root = NULL;
-	Node* temp = NULL;
+	BST<int> bst;
 
-	RInsert(&root, 50);
-	RInsert(&root, 10);
-	RInsert(&root, 40);
-	RInsert(&root, 20);
-	RInsert(&root, 30);
+	bst.rInsert(7);
+	bst.rInsert(5);
+	bst.rInsert(10);
+	bst.rInsert(21);
+	bst.rInsert(16);
+	bst.rInsert(50);
+	bst.InOrder();
+	std::cout << std::endl;
 
-	Delete(&root, 50);
-
-	InOrder(root);
-
-	temp = search(root, 4);
-
-	if (temp)
-		printf("element %d is found\n", temp->data);
+	if (bst.Search(10))
+		std::cout << "Node exists!\n";
 	else
-		printf("element is not found\n");
+		std::cout << "Node does not exist\n";
+	
+	bst.Delete(10);
+	bst.InOrder();
+
+	if (bst.Search(10))
+		std::cout << "Node exists!\n";
+	else
+		std::cout << "Node does not exist\n";
 
 	return 0;
 } 

@@ -46,7 +46,6 @@ void insert(struct Node** root, int key)
 
 struct Node* RInsert(struct Node** p, int key)
 {
-
 	if (*p == NULL)
 	{
 		struct Node* t = NULL;
