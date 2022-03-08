@@ -162,6 +162,7 @@
     <ClInclude Include="CPP_Style\Stack.h" />
     <ClInclude Include="CPP_Style\Utils.h" />
     <ClInclude Include="CPP_Style\Vector.h" />
+    <ClInclude Include="C_Style\AVL.h" />
     <ClInclude Include="C_Style\BST.h" />
     <ClInclude Include="C_Style\C_Binary_Tree.h" />
     <ClInclude Include="C_Style\C_Node.h" />

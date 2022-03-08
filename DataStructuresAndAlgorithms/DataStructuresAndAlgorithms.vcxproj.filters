@@ -98,6 +98,9 @@
     <ClInclude Include="CPP_Style\BST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C_Style\AVL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="CPP_Style\Queue_wArray.inl">
