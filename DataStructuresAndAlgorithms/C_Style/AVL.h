@@ -303,7 +303,7 @@ struct Node* Delete(struct Node** p, int key)
     {
         struct Node* q = NULL;
 
-        if (Height((*p)->lChild) > Height((*p)->rChild))
+        if (NodeHeight((*p)->lChild) > NodeHeight((*p)->rChild))
         {
             q = InPre((*p)->lChild);
             (*p)->data = q->data;

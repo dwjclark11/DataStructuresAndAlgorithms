@@ -1,15 +1,21 @@
 
-#include "C_Style/AVL.h"
-
+#include "CPP_Style/AVL.h"
+#include <iostream>
 int main()
 {
-    RInsert(&root, 50);
-    RInsert(&root, 10);
-    RInsert(&root, 20);
-    RInsert(&root, 25);
-    RInsert(&root, 15);
-    Delete(&root, 15);
+	AVL<float> avl;
+	avl.Insert(5);
+	avl.Insert(25);
+	avl.Insert(15);
+	avl.Insert(6);
+	avl.Insert(1);
 
+	avl.InOrder();
+	avl.Delete(15);
+	//avl.Delete(25);
+	//avl.Delete(1);
+	std::cout << std::endl;
+	avl.InOrder();
 
 	return 0;
 } 

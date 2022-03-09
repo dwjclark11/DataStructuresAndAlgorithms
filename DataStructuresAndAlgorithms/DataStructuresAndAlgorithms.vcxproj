@@ -149,6 +149,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CPP_Style\AVL.h" />
     <ClInclude Include="CPP_Style\Binary_Tree.h" />
     <ClInclude Include="CPP_Style\BST.h" />
     <ClInclude Include="CPP_Style\Cpp_Node.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="C_Style\Q_QueueLL.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CPP_Style\AVL.inl" />
     <None Include="CPP_Style\Binary_Tree.inl" />
     <None Include="CPP_Style\BST.inl" />
     <None Include="CPP_Style\List.inl" />

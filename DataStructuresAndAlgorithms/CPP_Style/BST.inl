@@ -1,4 +1,5 @@
 #include "BST.h"
+#include "Stack.h"
 
 template<typename T>
 inline typename BST<T>::Node* BST<T>::InPred(Node* p)
@@ -28,7 +29,34 @@ inline BST<T>::BST()
 template<typename T>
 inline BST<T>::~BST()
 {
+	// This is the same as post order except delete instead of print
+	long temp = 0;
+	Stack<Node*> st;
+	while (root || !st.isEmpty())
+	{
+		if (root)
+		{
+			st.push(root);
+			root = root->lChild;
+		}
+		else
+		{
+			temp = reinterpret_cast<long>(st.pop());
 
+			if (temp > 0)
+			{
+				st.push(reinterpret_cast<Node*>(-temp));
+				root = reinterpret_cast<Node*>(temp)->rChild;
+			}
+			else
+			{
+				temp = -temp;
+				delete reinterpret_cast<Node*>(temp);
+				root = nullptr;
+				std::cout << "Deleted\n";
+			}
+		}
+	}
 }
 
 template<typename T>
