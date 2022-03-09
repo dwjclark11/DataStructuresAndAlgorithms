@@ -10,6 +10,7 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Queue using array
 *    Binary Tree Implementation
 *    Binary Search Tree (BST) Implementation
+*    AVL Tree Implementation
 
 ### C++ Style
 *    Vector template class (ADT) Dynamic Array
@@ -24,5 +25,7 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Queue Template using array
 *    Queue Template using Linked List
 *    Queue Template using 2 Stacks
+*    Binary Tree Template Implimentation
+*    BST Template Implementation
 
 I will continue to add more as I go through the course
