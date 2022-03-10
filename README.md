@@ -27,5 +27,6 @@ This is a group of data structures from the Mastering Data Structures and Algori
 *    Queue Template using 2 Stacks
 *    Binary Tree Template Implimentation
 *    BST Template Implementation
+*    AVL Tree Implementation
 
 I will continue to add more as I go through the course
