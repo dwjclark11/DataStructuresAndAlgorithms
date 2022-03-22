@@ -47,3 +47,19 @@ void insertionSort(T* A, int n)
 		A[j + 1] = x;
 	}
 }
+
+template <typename T>
+void selectionSort(T* A, int n)
+{
+	int k;
+
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = k = i; j < n; j++)
+		{
+			if (A[j] < A[k])
+				k = j;
+		}
+		swap(&A[i], &A[k]);
+	}
+}
