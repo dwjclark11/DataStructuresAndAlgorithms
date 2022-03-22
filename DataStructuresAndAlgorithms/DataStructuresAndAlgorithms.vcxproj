@@ -171,7 +171,9 @@
     <ClInclude Include="C_Style\C_Stack_wArray.h" />
     <ClInclude Include="C_Style\C_Stack_wLinkedList.h" />
     <ClInclude Include="C_Style\DoublyLinkedList.h" />
+    <ClInclude Include="C_Style\Heap.h" />
     <ClInclude Include="C_Style\Q_QueueLL.h" />
+    <ClInclude Include="Sorting_Techniques\Sort.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CPP_Style\AVL.inl" />

@@ -1,21 +1,27 @@
 
-#include "CPP_Style/AVL.h"
+
 #include <iostream>
+#include "Sorting_Techniques/Sort.h"
+
 int main()
 {
-	AVL<float> avl;
-	avl.Insert(5);
-	avl.Insert(25);
-	avl.Insert(15);
-	avl.Insert(6);
-	avl.Insert(1);
+	int A[]{ 15, 8, 1, 2, 5,7,4 };
 
-	avl.InOrder();
-	avl.Delete(15);
-	//avl.Delete(25);
-	//avl.Delete(1);
+	std::cout << "Not Sorted: ";
+
+	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)
+		std::cout <<  A[i] << " ";
+
 	std::cout << std::endl;
-	avl.InOrder();
+
+	bubbleSort<int>(A, sizeof(A) / sizeof(A[0]));
+
+	std::cout << "Sorted: ";
+	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)
+		std::cout << A[i] << " ";
+
+	std::cout << std::endl;
+
 
 	return 0;
 } 
