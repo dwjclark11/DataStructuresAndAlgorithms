@@ -26,3 +26,24 @@ void bubbleSort(T* A, int n)
 		}
 	}
 }
+
+template <typename T>
+void insertionSort(T* A, int n)
+{
+	T x;
+	int j;
+
+	for (int i = 1; i < n; i++)
+	{
+		j = i - 1; 
+		x = A[i];
+
+		while (j > -1 && A[j] > x)
+		{
+			// Shift all elements
+			A[j + 1] = A[j];
+			j--;
+		}
+		A[j + 1] = x;
+	}
+}

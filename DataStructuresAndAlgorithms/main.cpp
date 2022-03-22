@@ -14,7 +14,7 @@ int main()
 
 	std::cout << std::endl;
 
-	bubbleSort<int>(A, sizeof(A) / sizeof(A[0]));
+	insertionSort<int>(A, sizeof(A) / sizeof(A[0]));
 
 	std::cout << "Sorted: ";
 	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)
