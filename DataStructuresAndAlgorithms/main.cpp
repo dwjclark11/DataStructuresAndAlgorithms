@@ -5,7 +5,7 @@
 
 int main()
 {
-	int A[]{ 15, 8, 1, 2, 5,7,4 };
+	int A[]{ 15, 8, 1, 2, 5, 7, 4};
 
 	std::cout << "Not Sorted: ";
 
@@ -14,7 +14,7 @@ int main()
 
 	std::cout << std::endl;
 
-	selectionSort<int>(A, sizeof(A) / sizeof(A[0]));
+	quickSort<int>(A, 0, (sizeof(A) / sizeof(A[0])));
 
 	std::cout << "Sorted: ";
 	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)
