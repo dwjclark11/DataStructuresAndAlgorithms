@@ -14,7 +14,7 @@ int main()
 
 	std::cout << std::endl;
 
-	quickSort<int>(A, 0, (sizeof(A) / sizeof(A[0])));
+	countSort<int>(A, (sizeof(A) / sizeof(A[0])));
 
 	std::cout << "Sorted: ";
 	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)

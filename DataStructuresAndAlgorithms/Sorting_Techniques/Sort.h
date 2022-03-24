@@ -189,3 +189,57 @@ void mergeSortR(T A[], int low, int high)
 		merge(A, low, mid, high);
 	}
 }
+
+
+template <typename T>
+T findMax(T A[], int n)
+{
+	T max = T();
+
+	for (int i = 0; i < n; i++)
+	{
+		if (A[i] > max)
+			max = A[i];
+	}
+	return max;
+}
+
+/*
+	Count Sort is a kind of hashing.
+	- We create a new array the size of the largest element in the given array
+	- Then we loop through the given array and increment the index of the new array 
+		based on the value at the current index of the given array
+*/
+template <typename T>
+void countSort(T A[], int n)
+{
+	int i, j;
+	T max, * C;
+	max = findMax(A, n);
+	C = new T[max + 1];
+
+	// Set all elements in c array to zero
+	for (i = 0; i < max + 1; i++)
+		C[i] = 0;
+
+	// Increment the index based on the value of A[i]
+	for (i = 0; i < n; i++)
+		C[A[i]]++;
+
+	// Reset j & i to zezo
+	i = 0; j = 0;
+
+	// Copy the indexes back into the original array.
+	while (i < max + 1)
+	{
+		// If C[i] > 0, place the index number as the value in A[j]
+		// Also increment j and decrement i. 
+		if (C[i] > 0)
+		{
+			A[j++] = i;
+			C[i]--;
+		}
+		else
+			i++;
+	}
+}
