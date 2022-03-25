@@ -1,10 +1,10 @@
 #include "Cpp_Node.h"
 #include <iostream>
 
-
-void LinkedList::Swap1(int a, int b)
+template <typename T>
+void LinkedList<T>::Swap1(T a, T b)
 {
-	Node* prevNode1 = nullptr, * prevNode2 = nullptr, * node1 = head, * node2 = head, * temp = nullptr;
+	Node<T>* prevNode1 = nullptr, * prevNode2 = nullptr, * node1 = head, * node2 = head, * temp = nullptr;
 
 	// Check if the list is empty
 	if (!head)
@@ -47,20 +47,21 @@ void LinkedList::Swap1(int a, int b)
 	else
 		std::cout << "Unable to swap!" << std::endl;
 }
-
-Node* LinkedList::Swap(Node* a, Node* b)
+template <typename T>
+Node<T>* LinkedList<T>::Swap(Node<T>* a, Node<T>* b)
 {
-	Node* temp = b->next;
+	Node<T>* temp = b->next;
 	b->next = a;
 	a->next = temp;
 	return b;
 }
 
-void LinkedList::RReverseLinks(Node* head, Node** headPtr)
+template <typename T>
+void LinkedList<T>::RReverseLinks(Node<T>* head, Node<T>** headPtr)
 {
-	Node* first;
-	Node* second;
-	
+	Node<T>* first;
+	Node<T>* second;
+
 	// If the list is empty, no need to reverse
 	if (!head)
 		return;
@@ -79,19 +80,19 @@ void LinkedList::RReverseLinks(Node* head, Node** headPtr)
 	second->next = first;
 	first->next = nullptr;
 }
-
-LinkedList::LinkedList(int A[], int n)
+template <typename T>
+LinkedList<T>::LinkedList(T A[], int n)
 {
-	Node* last = nullptr, *t;
-	
-	head = new Node;
+	Node<T>* last = nullptr, * t;
+
+	head = new Node<T>;
 	head->data = A[0];
 	head->next = nullptr;
 	last = head;
 	// i is equal to 1 because we already set the first node to the first element in the array
 	for (int i = 1; i < n; i++)
 	{
-		t = new Node;
+		t = new Node<T>;
 		t->data = A[i];
 		t->next = nullptr;
 		last->next = t;
@@ -99,10 +100,11 @@ LinkedList::LinkedList(int A[], int n)
 	}
 }
 
-LinkedList::~LinkedList()
+template <typename T>
+LinkedList<T>::~LinkedList()
 {
-	Node* p = head;
-	Node* next;
+	Node<T>* p = head;
+	Node<T>* next;
 	while (p)
 	{
 		next = p->next;
@@ -111,9 +113,10 @@ LinkedList::~LinkedList()
 	}
 }
 
-void LinkedList::Display()
+template <typename T>
+void LinkedList<T>::Display()
 {
-	Node* p = head;
+	Node<T>* p = head;
 
 	while (p)
 	{
@@ -122,19 +125,19 @@ void LinkedList::Display()
 	}
 	std::cout << std::endl;
 }
-
-int LinkedList::Insert(int index, int x)
+template <typename T>
+T LinkedList<T>::Insert(int index, T x)
 {
 	// Create a helper pointer for traversing the linked list
-	Node* p = head;
-	
+	Node<T>* p = head;
+
 	// Check to see if the index is valid
 	if (index < 0 || index > Length())
 		return -1;
 
 	// Create a new node to insert
-	Node* t = nullptr;
-	t = new Node;
+	Node<T>* t = nullptr;
+	t = new Node<T>;
 	t->data = x;
 
 	// If the index is 0, insert at the front
@@ -157,14 +160,15 @@ int LinkedList::Insert(int index, int x)
 	return 0;
 }
 
-int LinkedList::Delete(int index)
+template <typename T>
+T LinkedList<T>::Delete(int index)
 {
 	// Create 2 helper pointers 
-	struct Node* p = head;
-	struct Node* q = nullptr;
+	struct Node<T>* p = head;
+	struct Node<T>* q = nullptr;
 
 	// Create a variable to return the deleted value
-	int x = -1;
+	T x = -1;
 
 	// Check to see if the index is valid
 	if (index < 1 || index > Length())
@@ -179,7 +183,7 @@ int LinkedList::Delete(int index)
 		x = head->data;
 		// Set head to the next node
 		head = head->next;
-		
+
 		// Deallocate the node at p
 		delete p;
 
@@ -204,9 +208,10 @@ int LinkedList::Delete(int index)
 	}
 }
 
-int LinkedList::Length()
+template <typename T>
+int LinkedList<T>::Length()
 {
-	Node* p = head;
+	Node<T>* p = head;
 	int length = 0;
 
 	while (p)
@@ -216,10 +221,10 @@ int LinkedList::Length()
 	}
 	return length;
 }
-
-void LinkedList::Sort()
+template <typename T>
+void LinkedList<T>::Sort()
 {
-	Node** headPtr;
+	Node<T>** headPtr;
 	int swap = 0;
 	// Get the length/Count of the linked-list
 	int count = Length();
@@ -232,9 +237,9 @@ void LinkedList::Sort()
 		for (int j = 0; j < count - i; j++)
 		{
 			// Create 2 new Node ptrs for comparing and swaping nodes
-			Node* p1 = *headPtr;
-			Node* p2 = p1->next;
-			
+			Node<T>* p1 = *headPtr;
+			Node<T>* p2 = p1->next;
+
 			// Check that p2 is not nullptr and break if so, no need to try to check nullptr
 			if (!p2) break;
 
@@ -246,15 +251,16 @@ void LinkedList::Sort()
 
 			headPtr = &(*headPtr)->next;
 		}
-		
+
 		if (!swap)
 			break;
 	}
 }
 
-bool LinkedList::IsSorted()
+template <typename T>
+bool LinkedList<T>::IsSorted()
 {
-	Node* temp = head;
+	Node<T>* temp = head;
 	while (temp->next)
 	{
 		if (temp->data <= temp->next->data)
@@ -264,11 +270,11 @@ bool LinkedList::IsSorted()
 	}
 	return true;
 }
-
-void LinkedList::RemoveDuplicates()
+template <typename T>
+void LinkedList<T>::RemoveDuplicates()
 {
-	Node* p = head;
-	Node* q = p->next;
+	Node<T>* p = head;
+	Node<T>* q = p->next;
 
 	while (q)
 	{
@@ -287,14 +293,15 @@ void LinkedList::RemoveDuplicates()
 	}
 }
 
-void LinkedList::ReverseData()
+template <typename T>
+void LinkedList<T>::ReverseData()
 {
 	int index = 0;
-	Node* q = head;
-	
+	Node<T>* q = head;
+
 	// Create an array to hold all the data
 	int* A = new int[sizeof(int) * Length()];
-	
+
 	// Fill the array with all the data from the list
 	while (q)
 	{
@@ -315,15 +322,15 @@ void LinkedList::ReverseData()
 		index--;
 	}
 }
-
-void LinkedList::ReverseLinks()
+template <typename T>
+void LinkedList<T>::ReverseLinks()
 {
 	/*
 		This uses sliding pointers
 	*/
-	Node* p = head;		// Leading Node
-	Node* q = nullptr;	// Modified Node
-	Node* r = nullptr;	// Previous Node
+	Node<T>* p = head;		// Leading Node
+	Node<T>* q = nullptr;	// Modified Node
+	Node<T>* r = nullptr;	// Previous Node
 
 	while (p)
 	{
@@ -338,15 +345,18 @@ void LinkedList::ReverseLinks()
 	head = q;
 }
 
-void LinkedList::Reverse()
+template <typename T>
+void LinkedList<T>::Reverse()
 {
 	RReverseLinks(head, &head);
 }
+
 // Creates a new list with by concatinating the two, the calling list and the input list
-Node* LinkedList::Concat(Node** second)
+template <typename T>
+Node<T>* LinkedList<T>::Concat(Node<T>** second)
 {
-	Node* first = head;
-	Node* third = head;
+	Node<T>* first = head;
+	Node<T>* third = head;
 
 	while (first->next)
 		first = first->next;
@@ -359,8 +369,8 @@ Node* LinkedList::Concat(Node** second)
 
 	return third;
 }
-
-Node* LinkedList::Merge(LinkedList& list2)
+template <typename T>
+Node<T>* LinkedList<T>::Merge(LinkedList<T>& list2)
 {
 	// Check to see if the calling list is sorted
 	if (!IsSorted())
@@ -369,10 +379,10 @@ Node* LinkedList::Merge(LinkedList& list2)
 	if (!list2.IsSorted())
 		list2.Sort();
 
-	Node* first = head;
-	Node* second = *list2.GetHead();
-	Node* last;
-	Node* third;
+	Node<T>* first = head;
+	Node<T>* second = *list2.GetHead();
+	Node<T>* last;
+	Node<T>* third;
 
 	if (first->data < second->data)
 	{
@@ -413,13 +423,14 @@ Node* LinkedList::Merge(LinkedList& list2)
 	// Set the ptrs to nullptr
 	head = nullptr;
 	*list2.GetHead() = nullptr;
-	
+
 	return third;
 }
 
-bool LinkedList::IsLooped()
+template <typename T>
+bool LinkedList<T>::IsLooped()
 {
-	Node* p, * q;
+	Node<T>* p, * q;
 	p = q = head;
 
 	while (p && q)
@@ -434,3 +445,4 @@ bool LinkedList::IsLooped()
 	}
 	return false;
 }
+

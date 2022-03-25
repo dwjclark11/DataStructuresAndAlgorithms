@@ -1,4 +1,6 @@
 #pragma once
+#include "../CPP_Style/Cpp_Node.h"
+#include <cmath>
 
 template <typename T>
 void swap(T* a, T* b)
@@ -241,5 +243,112 @@ void countSort(T A[], int n)
 		}
 		else
 			i++;
+	}
+}
+
+template <typename T>
+int numDigits(T number)
+{
+	int digits = 0;
+
+	if (number <= 0)
+		return ++digits;
+
+	while (number)
+	{
+		number /= 10;
+		digits++;
+	}
+
+	return digits;
+}
+
+template <typename T>
+void binSort(T A[], int n)
+{
+	int max, i, j;
+	max = findMax(A, n);
+
+	LinkedList<T>* Bins;
+	Bins = new LinkedList<T>[max + 1];
+
+	for (i = 0; i < n; i++)
+		Bins[A[i]].Insert(Bins[A[i]].Length(), A[i]);
+
+	i = 0; j = 0;
+
+	while (i < max + 1)
+	{
+		while (Bins[i].Length() > 0)
+			A[j++] = Bins[i].Delete(1);
+		
+		i++;
+	}
+}
+
+/*
+	radixSort:
+		- Similar to binSort; however, it consumes less space. BinSort 
+		creates an array based on the size of the largest element, which
+		in turn can consume a lot of space. radixSort makes an array for 
+		the values 0 - 9 based on the decimal system. All numbers contain 
+		one of those values. All values are placed in the array linked list
+		based on the current Digit / pass.
+*/
+template <typename T>
+void radixSort(T A[], int n)
+{
+	int i, j;
+	// Find the number of digits of the highest number
+	int digits = numDigits(findMax(A, n));
+	// This is the current digit we are pointing at, starting on the RH side
+	int currentDigit = 0;
+	// We need an array of linked lists, 0 - 9
+	LinkedList* Bins;
+	Bins = new LinkedList[10];
+
+	while (currentDigit < digits)
+	{
+		for (i = 0; i < n; i++)
+		{
+			// Get the position to place the value based on the current digit
+			int k = (A[i] / static_cast<int>(pow(10, currentDigit))) % 10;
+			Bins[k].Insert(Bins[k].Length(), A[i]);
+		}
+
+		i = 0; j = 0;
+
+		while (i < 10)
+		{
+			// Start copying the values back into the original array and delete from the list 
+			// at the current i, location. We delete from the first element in the list
+			while (Bins[i].Length() > 0)
+				A[j++] = Bins[i].Delete(1);;
+
+			i++;
+		}
+		// Move over to the next digit
+		currentDigit++;
+	}
+}
+
+template <typename T>
+void shellSort(T A[], int n)
+{
+	int gap, i, j;
+
+	for (gap = n / 2; gap >= 1; gap /= 2)
+	{
+		for (i = gap; i < n; i++)
+		{
+			T temp = A[i];
+			j = i - gap;
+			while (j >= 0 && A[j] > temp)
+			{
+				A[j + gap] = A[j];
+				j = j - gap;
+			}
+			A[j + gap] = temp;
+		}
 	}
 }

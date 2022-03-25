@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CPP_Style\Cpp_Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CPP_Style\DoublyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -131,6 +128,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="CPP_Style\AVL.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="CPP_Style\New_Cpp_Node.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

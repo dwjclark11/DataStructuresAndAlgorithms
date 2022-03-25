@@ -14,7 +14,7 @@ int main()
 
 	std::cout << std::endl;
 
-	countSort<int>(A, (sizeof(A) / sizeof(A[0])));
+	binSort<int>(A, (sizeof(A) / sizeof(A[0])));
 
 	std::cout << "Sorted: ";
 	for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++)

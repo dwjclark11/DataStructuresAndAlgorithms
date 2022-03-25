@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CPP_Style\Cpp_Node.cpp" />
     <ClCompile Include="CPP_Style\DoublyLinkedList.cpp" />
     <ClCompile Include="CPP_Style\PolynomialLL.cpp" />
     <ClCompile Include="CPP_Style\SparseMatrixLL.cpp" />
@@ -180,6 +179,7 @@
     <None Include="CPP_Style\Binary_Tree.inl" />
     <None Include="CPP_Style\BST.inl" />
     <None Include="CPP_Style\List.inl" />
+    <None Include="CPP_Style\New_Cpp_Node.inl" />
     <None Include="CPP_Style\Queue.inl" />
     <None Include="CPP_Style\Queue_wArray.inl" />
     <None Include="CPP_Style\Vector.inl" />

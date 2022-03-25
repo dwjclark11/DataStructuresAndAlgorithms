@@ -1,31 +1,32 @@
 #pragma once
 #include <iostream>
-
+template <typename T>
 class Node
 {
 public:
-	int data;
+	T data;
 	Node* next;
 };
 
+template <typename T>
 class LinkedList
 {
 private:
-	Node* head;
+	Node<T>* head;
 
 	// Swap the nodes
-	void Swap1(int a, int b);
-	Node* Swap(Node* a, Node* b);
-	void RReverseLinks(Node* head, Node** headPtr);
+	void Swap1(T a, T b);
+	Node<T>* Swap(Node<T>* a, Node<T>* b);
+	void RReverseLinks(Node<T>* head, Node<T>** headPtr);
 public:
 	LinkedList() { head = nullptr; }
-	LinkedList(int A[], int n);
+	LinkedList(T A[], int n);
 	~LinkedList();
-	void SetHead(Node* head) { this->head = head; }
-	Node** GetHead() { return &head; }
+	void SetHead(Node<T>* head) { this->head = head; }
+	Node<T>** GetHead() { return &head; }
 	void Display();
-	int Insert(int index, int x);
-	int Delete(int index);
+	T Insert(int index, T x);
+	T Delete(int index);
 	int Length();
 	void Sort();
 	bool IsSorted();
@@ -36,8 +37,10 @@ public:
 	// Wrapper for the Recursive Reverse Links!
 	void Reverse();
 
-	Node* Concat(Node** second);
-	Node* Merge(LinkedList& second);
+	Node<T>* Concat(Node<T>** second);
+	Node<T>* Merge(LinkedList<T>& second);
 
 	bool IsLooped();
 };
+
+#include "New_Cpp_Node.inl"
