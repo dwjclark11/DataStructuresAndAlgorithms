@@ -172,6 +172,8 @@
     <ClInclude Include="C_Style\DoublyLinkedList.h" />
     <ClInclude Include="C_Style\Heap.h" />
     <ClInclude Include="C_Style\Q_QueueLL.h" />
+    <ClInclude Include="Graphs\Graph_Techniques.h" />
+    <ClInclude Include="Hashing_Techniques\Hashing.h" />
     <ClInclude Include="Sorting_Techniques\Sort.h" />
   </ItemGroup>
   <ItemGroup>
